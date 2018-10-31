@@ -1,0 +1,53 @@
+<div id="hero-area">
+    <div class="overlay"></div>
+    <div class="container">
+    <div class="row justify-content-center">
+    <div class="col-md-12 col-lg-9 col-xs-12 text-center">
+    <div class="contents">
+    <h1 class="head-title">Welcome to The Largest <span class="year">Marketplace</span></h1>
+    <p>Buy and sell everything from used cars to mobile phones and computers, or search for property, jobs and more</p>
+    
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+<section class="works section-padding catagory-page">
+    <div class="container">
+    <div class="row">
+    <div class="col-12">
+    <h3 class="section-title">BROWSE SERVICES</h3>
+    </div>
+    
+        
+    <div class="col-md-3 col-sm-6 col-xs-12"  *ngFor="let subcatlist of subcatList ; let i = index">
+    <div class="category-box red-border wow fadeInUpQuick animated" data-wow-delay="0.3s" >
+    <div class="icon">
+     <a [routerLink]="['.']" (click)="gotoPackagepage()">
+        <img [src]="subcatlist.image != '' && imageBaseUrl+ subcatlist.image || 'assets/img/no-img.png'" alt="">
+        </a>
+    </div>
+    <div class="category-header">
+     <a [routerLink]="['.']" (click)="gotoPackagepage()"><h4>{{subcatlist.name}}</h4></a>
+    </div>
+    <div class="category-content">
+    <ul>
+        <li *ngFor="let service of subcatlist.services ; let i = index">
+            <a  [routerLink]="['/package', service.id]" >{{service.name}}</a>
+    
+        </li>
+       
+    </ul>
+    <p  class="no-records" *ngIf="subcatlist.services.length < 1"> Services Not Available</p>
+    </div>
+    </div>
+    </div>
+    <p class="no-records" *ngIf="subcatList.length < 1"> Services Not Available</p>
+        
+           
+       
+    </div>
+    </div>
+    </section>
+    
+    

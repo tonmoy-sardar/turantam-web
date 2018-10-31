@@ -1,0 +1,144 @@
+<div class="page-header" style="background: url(assets/img/hero-area.jpg); background:cover ">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="breadcrumb-wrapper">
+                    <h2 class="product-title">Details</h2>
+                    <ol class="breadcrumb">
+                        <li><a href="#">Home /</a></li>
+                        <li>Beauty & Spa /</li>
+                        <li class="current">Wax & Groom</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="section-padding">
+    <div class="container">
+
+        <div class="product-info row">
+            <div class="col-lg-8 col-md-12 col-xs-12">
+                <div class="ads-details-wrapper">
+                    <div id="owl-demo" class="owl-carousel owl-theme owl-loaded owl-drag">
+
+
+
+                        <div class="owl-stage-outer">
+                            <div class="product-img">
+
+                                <img class="img-full" [src]="packagedetails.image_small != null && imageBaseUrl+ packagedetails.image_small || 'assets/img/no-img.png'"
+                                    alt="">
+                            </div>
+                            <span class="price">₹ {{packagedetails.price}}</span>
+                        </div>
+
+
+                    </div>
+                    <div class="details-box bg-light">
+                        <div class="ads-details-info">
+                            <h2>{{packagedetails.name}}
+                            </h2>
+
+                            <p class="mb-4">{{packagedetails.details}}</p>
+
+                            <div *ngFor="let packageentity of packageEntity ; let i = index">
+                                <hr>
+                                <h4 class="title-small mb-3">{{packageentity.name}}:</h4>
+                                <ul class="list-specification">
+                                    <li *ngFor="let entityvalue of packageentity.package_entity_value"><i class="fa fa-circle"></i>
+                                        {{entityvalue.value}}</li>
+                                </ul>
+                                <p class="no-records" *ngIf="packageentity.package_entity_value.length <1">{{packageentity.name}} Not Available</p>
+
+                            </div>
+
+
+                        </div>
+                        <div class="tag-bottom">
+                            <div class="float-left">
+                                <ul class="advertisement">
+                                    <li>
+                                        <p><strong><i class="lni-folder"></i> Categories:</strong> <a href="#">{{packagedetails.service_category_name}}</a></p>
+                                    </li>
+
+                                </ul>
+                            </div>
+                            <div class="float-right">
+                                <div class="share">
+                                    <div class="social-link">
+                                        <a class="facebook" data-toggle="tooltip" data-placement="top" title="" href="#"
+                                            data-original-title="facebook"><i class="fa fa-facebook"></i></a>
+                                        <a class="twitter" data-toggle="tooltip" data-placement="top" title="" href="#"
+                                            data-original-title="twitter"><i class="fa fa-twitter"></i></a>
+                                        <a class="linkedin" data-toggle="tooltip" data-placement="top" title="" href="#"
+                                            data-original-title="linkedin"><i class="fa fa-linkedin"></i></a>
+                                        <a class="google" data-toggle="tooltip" data-placement="top" title="" href="#"
+                                            data-original-title="google plus"><i class="fa fa-google-plus"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-lg-4 col-md-6 col-xs-12">
+
+                <aside class="details-sidebar">
+                    <div class="widget bg-light">
+                        <h4 class="widget-title">Reviews</h4>
+                        <div class="agent-inner">
+                            <div class="agent-title">
+                                <div class="agent-photo">
+                                    <a href="#"><img src="assets/img/review-star.png" alt=""></a>
+                                </div>
+                                <div class="agent-details">
+                                    <h3><a href="#">4.5</a></h3>
+                                    <span><i class="lni-phone-handset"></i>based on 193 reviews</span>
+                                </div>
+                            </div>
+                            <hr>
+
+                            <div class="listing-bottom price-listing">
+                                <h3 class="price float-left">₹ {{packagedetails.price}}</h3>
+                                <!--<a href="ads-details.html" class="btn btn-common float-right">View Details</a>-->
+
+                                <form class="plus-minas float-right" id='myform' method='POST' action='#'>
+                                    <input type='button' value='-' class='qtyminus' field='quantity' (click)="cartDecrease()" />
+                                    <input type='text' name='quantity' value='{{total}}' class='qty' />
+                                    <input type='button' value='+' class='qtyplus' field='quantity' (click)="cartIncrease()" />
+                                </form>
+
+                            </div>
+
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+
+                    <div class="widget bg-light">
+                        <h4 class="widget-title">More Ads and Catagory</h4>
+                        <ul class="posts-list">
+                            <li *ngFor="let recentservice of recentserviceList ; let i = index">
+                                <div class="widget-thumb">
+                                    <a [routerLink]="['/category', recentservice.id]"><img [src]="recentservice.image_small != '' && imageBaseUrl+ recentservice.image_small || 'assets/img/no-img.png'"
+                                            alt=""></a>
+                                </div>
+                                <div class="widget-content">
+                                    <h4><a href="#">{{recentservice.name}}</a></h4>
+
+                                    <!-- <h4 class="price">₹480.00</h4> -->
+                                </div>
+                                <div class="clearfix"></div>
+                            </li>
+
+                        </ul>
+                    </div>
+                </aside>
+
+            </div>
+
+        </div>
+    </div>
+</div>
