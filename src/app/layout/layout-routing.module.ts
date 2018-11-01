@@ -5,6 +5,8 @@ import { HomeComponent } from './home/home.component';
 import { SubcategoryComponent } from './subcategory/subcategory.component';
 import { PackageComponent } from './package/package.component';
 import { categoryComponent } from './category/category.component';
+import { CartComponent } from './cart/cart.component';
+import { ContactusComponent } from './contactus/contactus.component';
 
 import { AuthGuard } from '../core/guard/auth.guard';
 
@@ -23,6 +25,8 @@ const routes: Routes = [
       { path: 'category', loadChildren: './category/category.module#categoryModule' },
       { path: 'category/:id', loadChildren: './category/category.module#categoryModule' },
       { path: 'category/:id/:cityid', loadChildren: './category/category.module#categoryModule' },
+      { path: 'cart', loadChildren: './cart/cart.module#CartModule' },
+      { path: 'contactus', loadChildren: './contactus/contactus.module#ContactusModule' },
      
              
     ]

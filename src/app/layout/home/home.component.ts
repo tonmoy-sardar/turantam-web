@@ -60,7 +60,7 @@ export class HomeComponent implements OnInit {
     this.locationid = id;
   }
 
-  gotosearch(cityid, catname) {
+  gotoSearch(cityid, catname) {
     this.homeService.getcategoryName(catname).subscribe(
       res => {
         if (res['result'] != null) {

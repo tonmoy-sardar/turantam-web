@@ -5,6 +5,7 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
 //services 
 import { LoginService } from '../../services/login.service';
+import { CartService } from '../../services/cart.service';
 
 // core 
 import { LoginComponent } from '../login/login.component'
@@ -24,6 +25,7 @@ export class HeaderComponent implements OnInit {
   changePos: Number = 100;
   loggedIn: boolean;
   logedUser;
+  totalCart;
 
   constructor(
     private http: HttpClient,
@@ -31,13 +33,34 @@ export class HeaderComponent implements OnInit {
     private route: ActivatedRoute,
     public dialog: MatDialog,
     private loginService:LoginService,
+    private cartService:CartService,
   ) {
     loginService.getLoggedInStatus.subscribe(status => this.changeStatus(status));
-    //loginService.getLoggedInStatus.subscribe(status => this.changeStatus(status));
+    cartService.getCartNumberStatus.subscribe(status => this.cartNumberStatus(status));
+    //cartService.cartNumberStatus.subscribe(status => this.cartNumberStatus(cartNumer));
+
    }
 
   ngOnInit() {
     this.loadUserInfo();
+ 
+
+    if (sessionStorage.getItem("cart")) {
+      console.log(JSON.parse(sessionStorage.getItem("cart")));
+      this.totalCart = JSON.parse(sessionStorage.getItem("cart")).length;
+      
+    }
+    else {
+      this.totalCart = 0;
+    }
+    
+   
+  }
+
+  cartNumberStatus(status: boolean) {
+    if(status) {
+      this.totalCart = JSON.parse(sessionStorage.getItem("cart")).length;
+    }
   }
 
   onScroll(evt) {//window object can be wrapper in a service but for now we directly use it

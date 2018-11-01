@@ -3081,7 +3081,6 @@ a.back-to-top:focus {
 .sidebar-box .navdashboard ul li a.active i {
     color: #fff
 }
-
 .dashboard-sections {
     padding: 20px 0
 }
@@ -3094,15 +3093,15 @@ a.back-to-top:focus {
     position: relative;
     border-radius: 4px;
     padding: 10px;
+    min-height: 128px;
     -webkit-transition: all .4s ease-in-out;
     -moz-transition: all .4s ease-in-out;
     transition: all .4s ease-in-out
 }
 
-.dashboard-sections .icon {
-    float: left
+.dashboard-sections .icon { 
+  text-align: center; display: block; 
 }
-
 .dashboard-sections .icon i {
     font-size: 22px;
     text-align: center;
@@ -3111,12 +3110,12 @@ a.back-to-top:focus {
     border-radius: 50%;
     color: #fff;
     height: 42px;
-    display: inline-block;
+  
     background: #e40046
 }
 
 .dashboard-sections .contentbox {
-    float: left;
+    
     margin-left: 10px
 }
 
@@ -3147,6 +3146,43 @@ a.back-to-top:focus {
     -webkit-box-shadow: 0 0 10px rgba(175, 175, 175, .23);
     box-shadow: 0 0 10px rgba(175, 175, 175, .23)
 }
+
+.inner-box {
+    box-shadow: 0 0 10px rgba(175, 175, 175, .23)
+}
+
+.dashboard-box {
+    width: 100%;
+    display: inline-block;
+    padding: 10px;
+    border-bottom: 1px solid #eaedef
+}
+
+.dashboard-box .dashbord-title {
+    margin: 0;
+    float: left;
+    color: #363b4d;
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 20px;
+    padding: 8px 0 8px 10px
+}
+
+.dashboard-wrapper {
+    padding: 10px 15px
+}
+
+.dashboard-wrapper .select select {
+    border: 0;
+    width: 100%;
+    border-radius: 0;
+    background: 0 0;
+    font-size: 16px;
+    outline: none;
+    line-height: 30px;
+    padding: 15px 15px 15px 0
+}
+
 
 .inner-box {
     box-shadow: 0 0 10px rgba(175, 175, 175, .23)
@@ -5640,7 +5676,7 @@ float: left;
       color: #fff;
       cursor: pointer;
   }
-  .plus-minas { }
+  .plus-minus { }
 /* 26.10.2018 packages page end */
 
 /* 27.10.2018 packages page end */
@@ -5655,6 +5691,42 @@ float: left;
 }
 /* 27.10.2018 packages page end */
 
+.add-btn {        width: 85px;
+    height: 28px;
+    border-radius: 2px;
+    border: 2px solid #e40046;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    float: right; cursor: pointer; }
+.add-text {   font-size: 14px;
+    font-weight: 500;
+    line-height: 1.43;
+    color: #e40046;
+    height: calc(100% - 2px);
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #fff;}
+.plus {         width: 28px;
+    display: flex;
+    font-size: 18px;
+    justify-content: center;
+    color: #ffffff;
+    background-color: #e40046;
+    font-weight: 500;
+    height: 100%;}
+.count-btn {     width: 72px;
+    height: 28px;
+    border-radius: 2px;
+    border: 2px solid #fd5c63;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: uppercase; }
+.iframe-map iframe { padding: 30px;
+    box-shadow: 0 0 10px rgba(175, 175, 175, .23); background: #fff; }
 
 
 // For responsive css file  Start 

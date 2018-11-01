@@ -104,11 +104,12 @@
                             <div class="listing-bottom price-listing">
                                 <h3 class="price float-left">₹ {{packagedetails.price}}</h3>
                                 <!--<a href="ads-details.html" class="btn btn-common float-right">View Details</a>-->
-
-                                <form class="plus-minas float-right" id='myform' method='POST' action='#'>
-                                    <input type='button' value='-' class='qtyminus' field='quantity' (click)="cartDecrease()" />
-                                    <input type='text' name='quantity' value='{{total}}' class='qty' />
-                                    <input type='button' value='+' class='qtyplus' field='quantity' (click)="cartIncrease()" />
+                                <!-- <P (click)="addtoCart(packagedetails)">Add To Cart</P> -->
+                                <div (click)="addtoCart(packagedetails)" *ngIf="!packagedetails.isCart" class="add-btn"><span class="add-text">Add</span><span class="plus">+</span></div>
+                                <form *ngIf="packagedetails.isCart" class="plus-minas float-right" id='myform' method='POST' action='#'>
+                                    <input type='button' value='-' class='qtyminus' field='quantity' (click)="decrement(packagedetails)" />
+                                    <input type='text' name='quantity' value='{{packagedetails.quantity}}' class='qty' />
+                                    <input type='button' value='+' class='qtyplus' field='quantity' (click)="increment(packagedetails)" />
                                 </form>
 
                             </div>

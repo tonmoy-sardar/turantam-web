@@ -88,26 +88,28 @@
             <div id="grid-view" class="tab-pane fade active show">
               <div class="row">
                 <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6" *ngFor="let package of packageList ; let i = index">
+                 
                   <div class="featured-box">
                     <figure>
                       <div class="icon">
                         <span><i class="fa fa-star"></i> 4.5</span>
                       </div>
-                      <a [routerLink]="['/package/details', package.id]"><img class="img-fluid" [src]="package.image != null && imageBaseUrl+ package.image || 'assets/img/no-img.png'"
+                      <a [routerLink]="['/package/details', package.id]"><img class="img-fluid" [src]="package.image_small != null && imageBaseUrl+ package.image_small || 'assets/img/no-img.png'"
                           alt=""></a>
                     </figure>
                     <div class="feature-content">
 
-                      <h4><a href="ads-details.html">{{package.name}}</a></h4>
+                      <h4><a>{{package.name}}</a></h4>
 
                       <p class="dsc" [innerHTML]="package.description"></p>
                       <div class="listing-bottom">
                         <h3 class="price float-left">₹ {{package.price}}</h3>
-                       
-                        <form class="plus-minas float-right" id='myform' method='POST' action='#'>
-                          <input (click)="deleteCart(package.id)" type='button' value='-' class='qtyminus' field='quantity' />
-                          <input type='text' name='quantity' value='{{qty}}' class='qty' />
-                          <input (click)="addCart(package.id)" type='button' value='+' class='qtyplus' field='quantity' />
+                        <!-- <p (click)="addtoCart(package)" *ngIf="!package.isCart">Add to Cart</p> -->
+                        <div (click)="addtoCart(package)" *ngIf="!package.isCart" class="add-btn"><span class="add-text">Add</span><span class="plus">+</span></div>
+                        <form *ngIf="package.isCart" class="plus-minas float-right" id='myform' method='POST' action='#'>
+                          <input (click)="decrement(package)" type='button' value='-' class='qtyminus' field='quantity' />
+                          <input type='text' name='quantity' value={{package.quantity}} class='qty' />
+                          <input (click)="increment(package)" type='button' value='+' class='qtyplus' field='quantity' />
                         </form>
 
                       </div>
@@ -118,156 +120,7 @@
                 <!-- <p class="no-records" *ngIf="packageList.length <1">Data Not Found</p> -->
                   </div>
             </div>
-            <div id="list-view" class="tab-pane fade">
-              <div class="row">
-                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                  <div class="featured-box">
-                    <figure>
-                      <span class="price-save">
-                        30% Save
-                      </span>
-                      <div class="icon">
-                        <span class="bg-green"><i class="lni-heart"></i></span>
-                        <span><i class="lni-bookmark"></i></span>
-                      </div>
-                      <a href="#"><img class="img-fluid" src="assets/img/featured/img-1.jpg" alt=""></a>
-                    </figure>
-                    <div class="feature-content">
-                      <div class="product">
-                        <a href="#">Electronic > </a>
-                        <a href="#">Apple</a>
-                      </div>
-                      <h4><a href="ads-details.html">Canon SX Powershot ...</a></h4>
-                      <div class="meta-tag">
-                        <span>
-                          <a href="#"><i class="lni-user"></i> John Smith</a>
-                        </span>
-                        <span>
-                          <a href="#"><i class="lni-map-marker"></i> New York, US</a>
-                        </span>
-                        <span>
-                          <a href="#"><i class="lni-tag"></i> Apple</a>
-                        </span>
-                      </div>
-                      <p class="dsc">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
-                        Ipsum has been the industry.</p>
-                      <div class="listing-bottom">
-                        <h3 class="price float-left">$249.00</h3>
-                        <a href="ads-details.html" class="btn btn-common float-right">View Details</a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                  <div class="featured-box">
-                    <figure>
-                      <div class="icon">
-                        <span class="bg-green"><i class="lni-heart"></i></span>
-                        <span><i class="lni-bookmark"></i></span>
-                      </div>
-                      <a href="#"><img class="img-fluid" src="assets/img/featured/img-2.jpg" alt=""></a>
-                    </figure>
-                    <div class="feature-content">
-                      <div class="product">
-                        <a href="#">Electronic > </a>
-                        <a href="#">Apple</a>
-                      </div>
-                      <h4><a href="ads-details.html">Apple Macbook Pro ...</a></h4>
-                      <div class="meta-tag">
-                        <span>
-                          <a href="#"><i class="lni-user"></i> John Smith</a>
-                        </span>
-                        <span>
-                          <a href="#"><i class="lni-map-marker"></i> New York, US</a>
-                        </span>
-                        <span>
-                          <a href="#"><i class="lni-tag"></i> Apple</a>
-                        </span>
-                      </div>
-                      <p class="dsc">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
-                        Ipsum has been the industry.</p>
-                      <div class="listing-bottom">
-                        <h3 class="price float-left">$289.00</h3>
-                        <a href="ads-details.html" class="btn btn-common float-right">View Details</a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                  <div class="featured-box">
-                    <figure>
-                      <span class="price-save">
-                        30% Save
-                      </span>
-                      <div class="icon">
-                        <span class="bg-green"><i class="lni-heart"></i></span>
-                        <span><i class="lni-bookmark"></i></span>
-                      </div>
-                      <a href="#"><img class="img-fluid" src="assets/img/featured/img-3.jpg" alt=""></a>
-                    </figure>
-                    <div class="feature-content">
-                      <div class="product">
-                        <a href="#">Electronic > </a>
-                        <a href="#">Apple</a>
-                      </div>
-                      <h4><a href="ads-details.html">Mercedes Benz E200 ...</a></h4>
-                      <div class="meta-tag">
-                        <span>
-                          <a href="#"><i class="lni-user"></i> John Smith</a>
-                        </span>
-                        <span>
-                          <a href="#"><i class="lni-map-marker"></i> New York, US</a>
-                        </span>
-                        <span>
-                          <a href="#"><i class="lni-tag"></i> Apple</a>
-                        </span>
-                      </div>
-                      <p class="dsc">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
-                        Ipsum has been the industry.</p>
-                      <div class="listing-bottom">
-                        <h3 class="price float-left">$199.80</h3>
-                        <a href="ads-details.html" class="btn btn-common float-right">View Details</a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                  <div class="featured-box">
-                    <figure>
-                      <div class="icon">
-                        <span class="bg-green"><i class="lni-heart"></i></span>
-                        <span><i class="lni-bookmark"></i></span>
-                      </div>
-                      <a href="#"><img class="img-fluid" src="assets/img/featured/img-4.jpg" alt=""></a>
-                    </figure>
-                    <div class="feature-content">
-                      <div class="product">
-                        <a href="#">Electronic > </a>
-                        <a href="#">Apple</a>
-                      </div>
-                      <h4><a href="ads-details.html">Brown Leather Bag ...</a></h4>
-                      <div class="meta-tag">
-                        <span>
-                          <a href="#"><i class="lni-user"></i> John Smith</a>
-                        </span>
-                        <span>
-                          <a href="#"><i class="lni-map-marker"></i> New York, US</a>
-                        </span>
-                        <span>
-                          <a href="#"><i class="lni-tag"></i> Apple</a>
-                        </span>
-                      </div>
-                      <p class="dsc">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
-                        Ipsum has been the industry.</p>
-                      <div class="listing-bottom">
-                        <h3 class="price float-left">$206.90</h3>
-                        <a href="ads-details.html" class="btn btn-common float-right">View Details</a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+           
           </div>
         </div>
 

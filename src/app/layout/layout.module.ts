@@ -11,6 +11,8 @@ import { CoreModule } from '../core/core.module';
 import { SubcategoryComponent } from './subcategory/subcategory.component';
 import { PackageComponent } from './package/package.component';
 import { categoryComponent } from './category/category.component';
+import { CartComponent } from './cart/cart.component';
+import { ContactusComponent } from './contactus/contactus.component';
 
 @NgModule({
   imports: [

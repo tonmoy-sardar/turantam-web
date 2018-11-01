@@ -34,6 +34,7 @@ import { LoginService } from './services/login.service';
 import { SignupService } from './services/signup.service';
 import { CategoryService } from './services/category.service';
 import { PackageService } from './services/package.service';
+import { CartService } from './services/cart.service';
 
 //component
 import { LoginComponent } from './components/login/login.component';
@@ -117,7 +118,8 @@ export class CoreModule {
         LoginService,
         SignupService,
         CategoryService,
-        PackageService
+        PackageService,
+        CartService
       ]
     };
   }

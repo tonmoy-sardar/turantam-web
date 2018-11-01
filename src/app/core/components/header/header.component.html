@@ -29,7 +29,7 @@
 
 <div class="header-top-right float-right" *ngIf="loggedIn">
       
-    <a href="javascript:void(0)" class="header-top-button"><i class="fa fa-shopping-cart" aria-hidden="true"></i>  <span class="total-cart">3</span></a> |
+    <a  [routerLink]="['/cart']" class="header-top-button"><i class="fa fa-shopping-cart" aria-hidden="true"></i>  <span class="total-cart">{{totalCart}}</span></a> |
     <a href="javascript:void(0)" class="header-top-button"><i class="fa fa-user" aria-hidden="true"></i> {{logedUser}}</a>
     |
     <a href="javascript:void(0)" (click)="logout()" class="header-top-button"><i class="fa fa-user" aria-hidden="true"></i>
@@ -60,11 +60,11 @@
   Home
   </a>
   <div class="dropdown-menu">
-  <a class="dropdown-item active"  href="javascript:void(0)">Home 1</a>
+  <a class="dropdown-item"  href="javascript:void(0)">Home 1</a>
   <a class="dropdown-item"  href="javascript:void(0)">Home 2</a>
   </div>
   </li>
-  <li class="nav-item ">
+  <li class="nav-item " >
   <a class="nav-link" [routerLink]="['/.']" >
   Services
   </a>
@@ -106,7 +106,7 @@
   </div>
   </li>
   <li class="nav-item">
-  <a class="nav-link"  href="javascript:void(0)">
+  <a class="nav-link"  [routerLink]="['/contactus']">
   Contact
   </a>
   </li>
@@ -165,7 +165,7 @@
   </ul>
   </li>
   <li>
-  <a  href="javascript:void(0)">Contact Us</a>
+  <a  [routerLink]="['/contactus']">Contact Us</a>
   </li>
   </ul>
   
