@@ -23,17 +23,17 @@
     <div class="col-md-3 col-sm-6 col-xs-12"  *ngFor="let subcatlist of subcatList ; let i = index">
     <div class="category-box red-border wow fadeInUpQuick animated" data-wow-delay="0.3s" >
     <div class="icon">
-     <a [routerLink]="['.']" (click)="gotoPackagepage()">
+     <a [routerLink]="['.']">
         <img [src]="subcatlist.image != '' && imageBaseUrl+ subcatlist.image || 'assets/img/no-img.png'" alt="">
         </a>
     </div>
     <div class="category-header">
-     <a [routerLink]="['.']" (click)="gotoPackagepage()"><h4>{{subcatlist.name}}</h4></a>
+     <a [routerLink]="['.']"><h4>{{subcatlist.name}}</h4></a>
     </div>
     <div class="category-content">
     <ul>
         <li *ngFor="let service of subcatlist.services ; let i = index">
-            <a  [routerLink]="['/package', service.id]" >{{service.name}}</a>
+         <a  [routerLink]="['/package', service.id]" >{{service.name}}</a>
     
         </li>
        

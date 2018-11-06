@@ -19,7 +19,8 @@ export class CartComponent implements OnInit {
   total_packing_price: number;
   total_price: number;
   constructor(
-    private cartService:CartService
+    private cartService:CartService,
+    private router: Router,
   ) { }
 
   ngOnInit() {
@@ -111,6 +112,10 @@ export class CartComponent implements OnInit {
     this.customer_cart_data.forEach(x => {
       this.total_packing_price += x.packing_charges;
     })
+  }
+
+  gotoCheckoutpage() {
+    this.router.navigateByUrl('/checkout');
   }
 
  

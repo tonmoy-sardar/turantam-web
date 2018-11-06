@@ -1,0 +1,58 @@
+
+    <aside>
+        <div class="sidebar-box bg-light">
+            <div class="user">
+                <figure>
+                    <a href="#"><img src="assets/img/admin-man.png" alt=""></a>
+                </figure>
+                <div class="usercontent">
+                    <h3>Hello Tonmoy</h3>
+                    <h4>Administrator</h4>
+                </div>
+            </div>
+            <nav class="navdashboard">
+                <ul>
+                    <!-- <li>
+                        <a href="dashboard.html">
+                            <i class="fa fa-tachometer"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li> -->
+                    <li>
+                        <a [routerLink]="['/myprofile']">
+                            <i class="fa fa-cog"></i>
+                            <span>My Profile</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a [routerLink]="['/cart']">
+                            <i class="fa fa-cart-plus"></i>
+                            <span>My Cart</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a [routerLink]="['/myorders']">
+                            <i class="fa fa-tachometer"></i>
+                            <span>My Orders</span>
+                        </a>
+                    </li>
+                    
+                    <!-- <li>
+                        <a class="active" href="payments.html">
+                            <i class="fa fa-credit-card"></i>
+                            <span>My Payments</span>
+                        </a>
+                    </li> -->
+
+                   
+                    <li>
+                        <a (click)="logout()">
+                            <i class="fa fa-power-off"></i>
+                            <span>Log Out</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+       
+    </aside>

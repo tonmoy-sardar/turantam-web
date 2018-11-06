@@ -21,9 +21,7 @@ import {
   MatSortModule, MatTableModule, MatTabsModule, MatToolbarModule, MatTooltipModule, MatStepperModule,
 } from '@angular/material';
 
-// component
-import { HeaderComponent } from './components/header/header.component';
-import { FooterComponent } from './components/footer/footer.component';
+
 
 import { OwlModule } from 'ngx-owl-carousel';
 
@@ -35,11 +33,20 @@ import { SignupService } from './services/signup.service';
 import { CategoryService } from './services/category.service';
 import { PackageService } from './services/package.service';
 import { CartService } from './services/cart.service';
+import { ContactusService } from './services/contactus.service';
+import { CheckoutService } from './services/checkout.service';
+import { AddAddressService } from './services/add-address.service';
+import { OrderSuccessService } from './services/order-success.service';
+import { MyordersService } from './services/myorders.service';
 
-//component
+// component
+import { HeaderComponent } from './components/header/header.component';
+import { FooterComponent } from './components/footer/footer.component';
 import { LoginComponent } from './components/login/login.component';
 import { SignupComponent } from './components/signup/signup.component';
 import { ForgotComponent } from './components/forgot/forgot.component';
+import { MyprofileSidebarComponent } from './components/myprofile-sidebar/myprofile-sidebar.component';
+import { AddAddressComponent } from './components/add-address/add-address.component';
 
 
 
@@ -75,7 +82,9 @@ import { ForgotComponent } from './components/forgot/forgot.component';
     FooterComponent,
     LoginComponent,
     SignupComponent,
-    ForgotComponent],
+    ForgotComponent,
+    MyprofileSidebarComponent,
+    AddAddressComponent],
   exports: [
     NgbModule,
     FormsModule,
@@ -93,13 +102,15 @@ import { ForgotComponent } from './components/forgot/forgot.component';
 
     HeaderComponent,
     FooterComponent,
+    MyprofileSidebarComponent,
     OwlModule
 
   ],
   entryComponents: [
     LoginComponent,
     SignupComponent,
-    ForgotComponent
+    ForgotComponent,
+    AddAddressComponent,
   ]
 })
 
@@ -119,7 +130,12 @@ export class CoreModule {
         SignupService,
         CategoryService,
         PackageService,
-        CartService
+        CartService,
+        ContactusService,
+        CheckoutService,
+        AddAddressService,
+        OrderSuccessService,
+        MyordersService
       ]
     };
   }

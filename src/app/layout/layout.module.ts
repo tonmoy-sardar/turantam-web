@@ -4,15 +4,12 @@ import { CommonModule } from '@angular/common';
 // component
 import { LayoutRoutingModule } from './layout-routing.module';
 import { LayoutComponent } from './layout.component';
-import { HomeComponent } from './home/home.component';
+//import { HomeComponent } from './home/home.component';
 
 // core
 import { CoreModule } from '../core/core.module';
-import { SubcategoryComponent } from './subcategory/subcategory.component';
-import { PackageComponent } from './package/package.component';
-import { categoryComponent } from './category/category.component';
-import { CartComponent } from './cart/cart.component';
-import { ContactusComponent } from './contactus/contactus.component';
+import { ErrorComponent } from './error/error.component';
+
 
 @NgModule({
   imports: [

@@ -68,9 +68,8 @@
   <label class="custom-control-label" for="checkedall"></label>
   </div>
   </th>
-  <th>Photo</th>
+  <th>Image</th>
   <th>Title</th>
-  <th>Category</th>
   <th>Product Quantity</th>
   <th>Price</th>
   <th>Action</th>
@@ -89,7 +88,6 @@
   <h3>{{cartData.package_name}}</h3>
   <span class="dsc" [innerHTML]="cartData.description"></span>
   </td>
-  <td data-title="Category"><span class="adcategories">Beauty & Spa</span></td>
   <td data-title="Ad Status">
       <form  class="plus-minas float-right" id="myform" method="POST" action="#">
   <input (click)="decrement(i)" type="button" value="-" class="qtyminus" field="quantity"><input type="text" name="quantity" value="{{cartData.quantity}}" class="qty"><input (click)="increment(i)" type="button" value="+" class="qtyplus" field="quantity">
@@ -102,7 +100,7 @@
   <td data-title="Action">
   <div class="btns-actions">
   
-  <a (click)="remove(cartData.package_id)" class="btn-action btn-delete" href="#"><i class="fa fa-trash" aria-hidden="true"></i></a>
+  <a (click)="remove(cartData.package_id)" class="btn-action btn-delete" href="javascript:void(0)"><i class="fa fa-trash" aria-hidden="true"></i></a>
   </div>
   </td>
   </tr>
@@ -111,6 +109,9 @@
   
   </tbody>
   </table>
+
+  <!-- <a [routerLink]="['/checkout']">Checkout</a> -->
+  <button class="btn btn-common"(click)="gotoCheckoutpage()" type="button">Check Out</button>
   </div>
   </div>
   </div>

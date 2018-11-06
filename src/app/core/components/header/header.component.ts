@@ -46,7 +46,6 @@ export class HeaderComponent implements OnInit {
  
 
     if (sessionStorage.getItem("cart")) {
-      console.log(JSON.parse(sessionStorage.getItem("cart")));
       this.totalCart = JSON.parse(sessionStorage.getItem("cart")).length;
       
     }

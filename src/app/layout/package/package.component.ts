@@ -49,6 +49,7 @@ export class PackageComponent implements OnInit {
     }
   
     this.getpackageList(this.route.snapshot.params['id']);
+  
 
   }
 
