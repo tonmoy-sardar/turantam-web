@@ -39,6 +39,9 @@ export class PackageComponent implements OnInit {
     if (localStorage.getItem('isLoggedin')) {
       this.user_id = localStorage.getItem('userId');
     }
+    else {
+      this.user_id = "";
+    }
    
 
     if (sessionStorage.getItem("cart")) {
@@ -82,7 +85,7 @@ export class PackageComponent implements OnInit {
   // Cart code start
   addtoCart(item) {
 
-    if (localStorage.getItem('isLoggedin')) {
+   // if (localStorage.getItem('isLoggedin')) {
       var data = {
         customer_id: this.user_id,
         package_id: item.id,
@@ -93,8 +96,9 @@ export class PackageComponent implements OnInit {
         image_small: item.image_small,
         quantity: item.quantity + 1
       }
-      var index = this.customer_cart_data.findIndex(y => y.package_id == item.id && y.customer_id == this.user_id);
-  
+      console.log(data);
+      //var index = this.customer_cart_data.findIndex(y => y.package_id == item.id && y.customer_id == this.user_id);
+      var index = this.customer_cart_data.findIndex(y => y.package_id == item.id);
       for (let i = 0; i < this.packageList.length; i++) {
         if (this.packageList[i]['id'] == item.id) {
           this.packageList[i].isCart = true;
@@ -107,15 +111,15 @@ export class PackageComponent implements OnInit {
         this.customer_cart_data.push(data);
         this.setCartData();
       }
-    }
-    else {
-      let dialogRef = this.dialog.open(LoginComponent, {
-        width: '525px',
-        data: {type:1}
-      });
-      dialogRef.afterClosed().subscribe(result => {
-      })
-    }
+  //  }
+    // else {
+    //   let dialogRef = this.dialog.open(LoginComponent, {
+    //     width: '525px',
+    //     data: {type:1}
+    //   });
+    //   dialogRef.afterClosed().subscribe(result => {
+    //   })
+    // }
     
     this.cartService.cartNumberStatus(true);
   }
@@ -189,6 +193,8 @@ export class PackageComponent implements OnInit {
 
   gotoPackagedetails() {
     this.router.navigateByUrl('/package/details');
+ 
   }
+
 
 }

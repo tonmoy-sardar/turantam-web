@@ -119,11 +119,7 @@ export class CoreModule {
     return {
       ngModule: CoreModule,
       providers: [
-        // AuthGuard,
-        // {
-        //  provide: AuthServiceConfig,
-        //   useFactory: provideConfig
-        // },
+        AuthGuard,
         GooglemapsService,
         HomeService,
         LoginService,

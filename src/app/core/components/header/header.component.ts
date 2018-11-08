@@ -37,7 +37,8 @@ export class HeaderComponent implements OnInit {
   ) {
     loginService.getLoggedInStatus.subscribe(status => this.changeStatus(status));
     cartService.getCartNumberStatus.subscribe(status => this.cartNumberStatus(status));
-    //cartService.cartNumberStatus.subscribe(status => this.cartNumberStatus(cartNumer));
+    loginService.getLoggedOutStatus.subscribe(status => this.logoutStatus(status));
+    
 
    }
 
@@ -76,6 +77,14 @@ private changeStatus(status: boolean) {
     this.loadUserInfo();
   }
 }
+
+  private logoutStatus(status: boolean) {
+    if (status) {
+      localStorage.clear();
+      this.loggedIn = false;
+      this.router.navigate(['/']);
+    }
+  }
 
 login() {
   let dialogRef = this.dialog.open(LoginComponent, {

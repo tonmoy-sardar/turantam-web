@@ -116,7 +116,7 @@ export class PackagedetailsComponent implements OnInit {
       data: {type:1}
     });
     dialogRef.afterClosed().subscribe(result => {
- 
+     
     })
   }
 

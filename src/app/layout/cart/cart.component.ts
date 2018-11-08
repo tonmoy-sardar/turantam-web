@@ -3,6 +3,11 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
 import { environment } from '../../../environments/environment';
 
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+
+// core 
+import { LoginComponent } from '../../core/components/login/login.component'
+
 // services
 import { CartService } from '../../core/services/cart.service';
 @Component({
@@ -21,13 +26,16 @@ export class CartComponent implements OnInit {
   constructor(
     private cartService:CartService,
     private router: Router,
+    public dialog: MatDialog,
   ) { }
 
   ngOnInit() {
     this.imageBaseUrl = environment.imageBaseUrl;
     if (localStorage.getItem('isLoggedin')) {
       this.user_id = localStorage.getItem('userId');
-
+    }
+    else {
+      this.user_id ="";
     }
     this.populateData();
   }
@@ -35,8 +43,12 @@ export class CartComponent implements OnInit {
   populateData() {
     if (sessionStorage.getItem("cart")) {
       this.all_cart_data = JSON.parse(sessionStorage.getItem("cart"));
-      var filteredData = this.all_cart_data.filter(x => x.customer_id == this.user_id)
-      this.customer_cart_data = filteredData;
+      console.log(this.all_cart_data);
+     // var filteredData = this.all_cart_data.filter(x => x.customer_id == this.user_id)
+     // this.customer_cart_data = filteredData;
+
+     this.customer_cart_data = this.all_cart_data;
+     
       this.getTotalItemPrice();
       this.getTotalPackingPrice();
     }
@@ -48,7 +60,8 @@ export class CartComponent implements OnInit {
   increment(i) {
     var qty = this.customer_cart_data[i].quantity;
      this.customer_cart_data[i].quantity = qty + 1;
-    var index = this.all_cart_data.findIndex(x => x.customer_id == this.user_id && x.package_id == this.customer_cart_data[i].package_id);
+    //var index = this.all_cart_data.findIndex(x => x.customer_id == this.user_id && x.package_id == this.customer_cart_data[i].package_id);
+    var index = this.all_cart_data.findIndex(x => x.package_id == this.customer_cart_data[i].package_id);
     if (index != -1) {
       this.all_cart_data[index].quantity = qty + 1;
       this.setCartData()
@@ -61,7 +74,8 @@ export class CartComponent implements OnInit {
     var qty = this.customer_cart_data[i].quantity;
     if (qty > 1) {
       this.customer_cart_data[i].quantity = qty - 1;
-      var index = this.all_cart_data.findIndex(x => x.customer_id == this.user_id &&  x.package_id == this.customer_cart_data[i].package_id);
+      //var index = this.all_cart_data.findIndex(x => x.customer_id == this.user_id &&  x.package_id == this.customer_cart_data[i].package_id);
+      var index = this.all_cart_data.findIndex(x => x.package_id == this.customer_cart_data[i].package_id);
       if (index != -1) {
         this.all_cart_data[index].quantity = qty - 1;
         this.setCartData()
@@ -83,8 +97,9 @@ export class CartComponent implements OnInit {
   }
 
   remove(id) {
-    var index = this.all_cart_data.findIndex(x => x.customer_id == this.user_id && x.package_id == id);
-    if (index != -1) {
+   // var index = this.all_cart_data.findIndex(x => x.customer_id == this.user_id && x.package_id == id);
+   var index = this.all_cart_data.findIndex(x =>  x.package_id == id); 
+   if (index != -1) {
       this.all_cart_data.splice(index, 1);
       this.customer_cart_data.splice(index, 1);
       this.setCartData()
@@ -115,7 +130,20 @@ export class CartComponent implements OnInit {
   }
 
   gotoCheckoutpage() {
-    this.router.navigateByUrl('/checkout');
+    //this.router.navigateByUrl('/checkout');
+    if (localStorage.getItem('isLoggedin')) {
+      this.router.navigateByUrl('/checkout');
+    }
+    else {
+      let dialogRef = this.dialog.open(LoginComponent, {
+        width: '525px',
+        data: { type: 1 }
+      });
+      dialogRef.afterClosed().subscribe(result => {
+        console.log(result);
+        this.router.navigate(['/checkout']);
+      })
+    }
   }
 
  

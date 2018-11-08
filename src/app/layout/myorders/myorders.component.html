@@ -33,74 +33,46 @@
         <thead>
         <tr>
         
-        <th>Product</th>
-        <th>Title</th>
-        <th>Category</th>
-        <th>Product Quantity</th>
+        <th>Order Id</th>
         <th>Price</th>
-        <th>Status</th>
+        <th>Date</th>
+        <th>Payment Mode</th>
+        <th>Action</th>
+       
+      
         </tr>
         </thead>
         <tbody>
-        <tr data-category="active">
+        <tr data-category="active" *ngFor="let orderList of myOrderList ; let i = index">
         
-        <td class="photo"><img class="img-fluid" src="assets/img/img1.jpg" alt=""></td>
         <td data-title="Title">
-        <h3>Party Make-up Artists in Kolkata</h3>
-        <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quo aut magni perferendis.</span>
+          #{{orderList.order_no}}
         </td>
-        <td data-title="Category"><span class="adcategories">Beauty &amp; Spa</span></td>
-        <td data-title="Ad Status"><b>Qty 2</b></td>
         <td data-title="Price">
-        <h3>₹139</h3>
+          ₹{{orderList.total_price}}
         </td>
-        <td data-title="Action">
-          <div class="btns-actions">
-            <span class="adstatus btn-view">successfully placed</span>
+        <td data-title="Price">
+          {{orderList.date_created}}
+        </td>
+        <td data-title="Price">
+         <span *ngIf="orderList.payment_type==1">Paytm</span>
+         <span *ngIf="orderList.payment_type==2">Cash On Delivery</span>
+        </td>
+        <td (click) = "current = i">
+            <i *ngIf="i != current" class="fa fa-chevron-right" aria-hidden="true"></i>
+            <i *ngIf="i == current" class="fa fa-chevron-down" aria-hidden="true"></i>
+        </td>
+
+          <div *ngFor="let orderDetails of orderList.order_details" class="panel-collapse"  [class.collapse]='current != i'>
+              <div class="panel-body">Name : {{orderDetails.package_name}}</div>
+              <div class="panel-body">Quantity : {{orderDetails.quantity}}</div>
+              <div class="panel-body">Unit Price : {{orderDetails.unit_price}}</div>
+              <div class="panel-body">Total Price : {{orderDetails.total_cost}}</div>
+              <hr>
             </div>
-        </td>
+      
         </tr>
-        <tr data-category="active">
-        
-        <td class="photo"><img class="img-fluid" src="assets/img/img1.jpg" alt=""></td>
-        <td data-title="Title">
-        <h3>Jvc Haebr80b In-ear Sports Headphones</h3>
-        <span>Ad ID: ng3D5hAMHPajQrM</span>
-        </td>
-        <td data-title="Category">Electronics</td>
-        <td data-title="Ad Status"><b>Qty 2</b></td>
-        <td data-title="Price">
-        <h3>$189</h3>
-        </td>
-        <td data-title="Action">
-        <div class="btns-actions">
-        
-            <span class="adstatus btn-pending">Pending</span>
-        </div>
-        </td>
-        </tr>
-          
-        <tr data-category="sold">
-        
-        <td class="photo"><img class="img-fluid" src="assets/img/img1.jpg" alt=""></td>
-        <td data-title="Title">
-        <h3>Apple iPhone X, Fully Unlocked 5.8", 64 GB - Black</h3>
-        <span>Ad ID: ng3D5hAMHPajQrM</span>
-        </td>
-        <td data-title="Category">Mobile</td>
-        <td data-title="Ad Status"><b>Qty 2</b></td>
-        <td data-title="Price">
-        <h3>$89</h3>
-        </td>
-        <td data-title="Action">
-          <div class="btns-actions">
-        
-            <span class="adstatus btn-pending">Pending</span>
-        </div>
-        </td>
-        </tr>
-            
-        
+
         </tbody>
         </table> 
            <hr> 
