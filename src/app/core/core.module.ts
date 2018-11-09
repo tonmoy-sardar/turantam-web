@@ -38,6 +38,7 @@ import { CheckoutService } from './services/checkout.service';
 import { AddAddressService } from './services/add-address.service';
 import { OrderSuccessService } from './services/order-success.service';
 import { MyordersService } from './services/myorders.service';
+import { MyprofileService } from './services/myprofile.service';
 
 // component
 import { HeaderComponent } from './components/header/header.component';
@@ -131,7 +132,8 @@ export class CoreModule {
         CheckoutService,
         AddAddressService,
         OrderSuccessService,
-        MyordersService
+        MyordersService,
+        MyprofileService
       ]
     };
   }

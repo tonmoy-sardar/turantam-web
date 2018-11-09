@@ -30,42 +30,95 @@
               <div class="dashboard-box">
                 <h2 class="dashbord-title">Profile Settings</h2>
               </div>
-              <div class="dashboard-wrapper">
-                <div class="row">
-                  <div class="form-group mb-3 col-md-6">
-                    <label class="control-label">Name:</label>
-                    <input class="form-control input-md" name="Title" placeholder="Name" type="text">
+              <div class="dashboard-wrapper" *ngIf="!editProfile">
+                  <div class="row">
+                      <div class="form-group mb-12 col-md-12">
+                      
+                        <i (click)="showEditProfile()" class="fa fa-pencil-square-o edit-icon" aria-hidden="true"></i> 
+                        </div>
                   </div>
+                <div class="row">
+                  <div class="form-group mb-3 col-md-4">
+                    <label class="control-label">Name:</label>
+                    
+                  <div>{{profileDetails.name}}</div>  
+                   </div>
 
-                  <div class="form-group mb-3 col-md-6">
+                  <div class="form-group mb-3 col-md-4">
                     <label class="control-label">Phone Nunber:</label>
-                    <input class="form-control input-md" name="price" placeholder="Phone Nunber" type="text">
-
+                    <div>{{profileDetails.contact}}</div>  
                   </div>
 
                   <div class="form-group mb-3 col-md-4">
                     <label class="control-label">Email:</label>
-                    <input class="form-control input-md" name="Title" placeholder="Email" type="text">
+                    <div>{{profileDetails.email}}</div>  
                   </div>
 
-                  <div class="form-group mb-3 col-md-4">
+                
+              
+
+                </div>
+
+
+              </div>
+
+              <div class="dashboard-wrapper" *ngIf="editProfile">
+                  <form role="form" [formGroup]="editForm" novalidate (submit)="updateProfile()">
+                <div class="row">
+                   
+                  <div class="form-group mb-3 col-md-6">
+                    <label class="control-label">Name:</label>
+                   
+                    <input type="text" name="name" class="form-control input-md" placeholder="User Name"
+                  formControlName="name" [(ngModel)]="profileDetails.name" [ngClass]="displayFieldCss(editForm,'name')">
+                <div class="invalid-feedback text-left" *ngIf="isFieldValid(editForm,'name')">
+                  Please enter name
+                </div>
+                  </div>
+
+                  <div class="form-group mb-3 col-md-6">
+                    <label class="control-label">Phone Nunber:</label>
+                    <input type="text" [(ngModel)]="profileDetails.contact" name="contact"class="form-control input-md" placeholder="Contact Number"
+                    formControlName="contact" [ngClass]="displayFieldCss(editForm,'contact')">
+                  <div class="invalid-feedback text-left" *ngIf="isFieldValid(editForm,'contact')">
+                    Please enter Contact Number
+                  </div>
+                    
+                  </div>
+
+                  <div class="form-group mb-3 col-md-6">
+                    <label class="control-label">Email:</label>
+                    <input type="email" [(ngModel)]="profileDetails.email" class="form-control input-md" placeholder="Enter your email" formControlName="email" [ngClass]="displayFieldCss(editForm,'email')">
+                    <div class="invalid-feedback text-left" *ngIf="editForm.controls['email'].hasError('pattern') && !editForm.controls['email'].hasError('required')">
+                      Please enter a valid email address
+                    </div>
+                    <div class="invalid-feedback text-left" *ngIf="editForm.controls['email'].hasError('required')">
+                      Email is required
+                    </div>
+                  </div>
+
+                   <div class="form-group mb-3 col-md-4">
                     <label class="tg-fileuploadlabel" for="tg-photogallery">
                       <span>Drop files anywhere to upload</span>
 
                       <span class="btn btn-common">Browse image</span>
 
-                      <input id="tg-photogallery" class="tg-fileinput" type="file" name="file">
+                      <!-- <input id="tg-photogallery" class="tg-fileinput"  type="file" name="profile_image" formControlName="profile_image" (change)="profileImageChange($event.target.files)"> -->
+                     <input id="tg-photogallery" class="tg-fileinput" (change)="onFileChange($event)"  type="file" name="profile_image" formControlName="profile_image">
                     </label>
 
-                  </div>
+                  </div> 
                   <div class="form-group mb-3 col-md-4">
+                    <input type="submit" class="btn btn-common" value="Update">
 
-                    <a href="#" class="btn btn-common">Submit</a>
+                    <!-- <a href="#" class="btn btn-common">Submit</a> -->
                   </div>
+
+                  
 
                 </div>
 
-
+              </form>
               </div>
             </div>
           </div>

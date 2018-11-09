@@ -6,6 +6,7 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 //services 
 import { LoginService } from '../../services/login.service';
 import { CartService } from '../../services/cart.service';
+import { MyprofileService } from '../../../core/services/myprofile.service';
 
 // core 
 import { LoginComponent } from '../login/login.component'
@@ -34,10 +35,12 @@ export class HeaderComponent implements OnInit {
     public dialog: MatDialog,
     private loginService:LoginService,
     private cartService:CartService,
+    private myprofileService:MyprofileService,
   ) {
     loginService.getLoggedInStatus.subscribe(status => this.changeStatus(status));
     cartService.getCartNumberStatus.subscribe(status => this.cartNumberStatus(status));
     loginService.getLoggedOutStatus.subscribe(status => this.logoutStatus(status));
+    myprofileService.getProfileUpdateStatus.subscribe(status => this.profileUpdateStatus(status));
     
 
    }
@@ -137,7 +140,13 @@ logout() {
   this.loggedIn = false;
   this.router.navigate(['/']);
 }
-
+private profileUpdateStatus(status: boolean) {
+  if (status) {
+    this.logedUser = localStorage.getItem('userName');
+   // alert(this.logedUser);
+    
+  }
+}
 
 
  
