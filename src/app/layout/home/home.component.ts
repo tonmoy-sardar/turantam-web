@@ -144,6 +144,7 @@ export class HomeComponent implements OnInit {
     this.homeService.getcategoryList().subscribe(
       res => {
         this.categoryList = res.result;
+        console.log(this.categoryList);
       },
       error => {
         console.log(error);

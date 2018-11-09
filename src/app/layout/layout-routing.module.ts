@@ -22,9 +22,9 @@ const routes: Routes = [
       { path: 'cart', loadChildren: './cart/cart.module#CartModule' },
       { path: 'contactus', loadChildren: './contactus/contactus.module#ContactusModule' },
       { path: 'checkout', loadChildren: './checkout/checkout.module#CheckoutModule',canActivate: [AuthGuard] },
-      { path: 'myorders', loadChildren: './myorders/myorders.module#MyordersModule' },
-      { path: 'myprofile', loadChildren: './myprofile/myprofile.module#MyprofileModule' },
-      { path: 'ordersuccess/:id', loadChildren: './order-success/order-success.module#OrderSuccessModule' },
+      { path: 'myorders', loadChildren: './myorders/myorders.module#MyordersModule',canActivate: [AuthGuard] },
+      { path: 'myprofile', loadChildren: './myprofile/myprofile.module#MyprofileModule',canActivate: [AuthGuard] },
+      { path: 'ordersuccess/:id', loadChildren: './order-success/order-success.module#OrderSuccessModule',canActivate: [AuthGuard] },
       { path: '**', loadChildren: './error/error.module#ErrorModule' },
              
     ]

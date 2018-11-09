@@ -94,7 +94,7 @@
                       <div class="icon">
                         <span><i class="fa fa-star"></i> 4.5</span>
                       </div>
-                      <a [routerLink]="['/package/details', package.id]"><img class="img-fluid" [src]="package.image_small != null && imageBaseUrl+ package.image_small || 'assets/img/no-img.png'"
+                      <a [routerLink]="['/package/details', package.slug]"><img class="img-fluid" [src]="package.image_small != null && imageBaseUrl+ package.image_small || 'assets/img/no-img.png'"
                           alt=""></a>
                     </figure>
                     <div class="feature-content">

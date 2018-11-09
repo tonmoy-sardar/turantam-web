@@ -31,7 +31,7 @@
             </div>
           </form>
           <form role="form" [formGroup]="signupForm" novalidate (submit)="signUp()" *ngIf="!toggle_key">
-            <div class="form-content">
+            <div class="form-content" *ngIf="getOtp.length ==0">
               <div class="form-group">
                 <label>Name</label>
                 <input type="text" name="name" class="form-control input-underline input-lg" placeholder="User Name"
@@ -58,7 +58,33 @@
                   Please enter password
                 </div>
               </div>
+
+              <div class="form-group">
+                <label>Contact Number</label>
+                <input type="text" name="contact" class="form-control input-underline input-lg" placeholder="Contact Number"
+                  formControlName="contact" [ngClass]="displayFieldCss(signupForm,'contact')">
+                <div class="invalid-feedback text-left" *ngIf="isFieldValid(signupForm,'contact')">
+                  Please enter Contact Number
+                </div>
+              </div>
+             
             </div>
+
+            <div class="form-content" *ngIf="getOtp.length > 0">
+            <div class="form-group">
+              <label>OTP </label>
+              <input type="text" name="otp" class="form-control input-underline input-lg" placeholder="OTP"
+                formControlName="otp" [ngClass]="displayFieldCss(signupForm,'otp')">
+              <div class="invalid-feedback text-left" *ngIf="isFieldValid(signupForm,'password')">
+                Please enter OTP
+              </div>
+              <!-- <div class="invalid-feedback text-left" *ngIf="isFieldValid(signupForm,'password')">
+                Please enter OTP
+              </div> -->
+              <a href="javascript:void(0)" (click)="resendOtp()">Resend OTP</a>
+            </div>
+          </div>
+
             <div class="form-group">
               <button type="submit" class="btn btn-block"> Sign Up </button>
             </div>

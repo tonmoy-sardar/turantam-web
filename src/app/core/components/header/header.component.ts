@@ -59,8 +59,15 @@ export class HeaderComponent implements OnInit {
 
   cartNumberStatus(status: boolean) {
     if(status) {
-      this.totalCart = JSON.parse(sessionStorage.getItem("cart")).length;
+      if(sessionStorage.getItem("cart")) {
+        this.totalCart = JSON.parse(sessionStorage.getItem("cart")).length;
+      }
+      else {
+        this.totalCart =0;
+      }
+      
     }
+    
   }
 
   onScroll(evt) {//window object can be wrapper in a service but for now we directly use it

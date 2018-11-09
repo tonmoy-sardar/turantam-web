@@ -20,6 +20,8 @@
   <a class="google" href="#"><i class="fa fa-google-plus"></i></a>
   </div>
   <div class="header-top-right float-right" *ngIf="!loggedIn">
+    <a  [routerLink]="['/cart']" class="header-top-button"><i class="fa fa-shopping-cart" aria-hidden="true"></i>  <span class="total-cart">{{totalCart}}</span></a> |
+    
     <a  href="javascript:void(0)" (click)="login()" class="header-top-button"><i class="fa fa-user"
         aria-hidden="true"></i> Log In</a> |
     <a  href="javascript:void(0)" (click)="register()" class="header-top-button"><i class="fa fa-pencil"></i>
@@ -29,7 +31,7 @@
 
 <div class="header-top-right float-right" *ngIf="loggedIn">
       
-    <a  [routerLink]="['/cart']" class="header-top-button"><i class="fa fa-shopping-cart" aria-hidden="true"></i>  <span class="total-cart">{{totalCart}}</span></a> |
+  <a  [routerLink]="['/cart']" class="header-top-button"><i class="fa fa-shopping-cart" aria-hidden="true"></i>  <span class="total-cart">{{totalCart}}</span></a> |
     
     <a [routerLink]="['/myprofile']" class="header-top-button top-dropdown"><i class="fa fa-user" aria-hidden="true"></i> {{logedUser}}</a>
     

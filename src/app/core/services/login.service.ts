@@ -34,5 +34,16 @@ export class LoginService {
     return this.http.post(environment.apiEndpoint + 'userregister/', data)
   }
 
+  userForgetPasswordOtp(data): Observable<any> {
+    console.log(data);
+    return this.http.post(environment.apiEndpoint + 'userforgetpasswordotp/', data)
+  }
+
+  userForgetPasswordUpdate(data): Observable<any> {
+    console.log(data);
+    return this.http.post(environment.apiEndpoint + 'userforgetpasswordupdate/', data)
+  }
+
+
 
 }

@@ -55,26 +55,26 @@ export class ContactusComponent implements OnInit {
   sendMessage() {
     console.log(this.contactForm);
      if (this.contactForm.valid) {
-      this.contactusService.sendMessageStatus(true);  
-      this.toastr.success('Message Send Successfully', '', {
-        timeOut: 3000,
-      });
-      this.contactForm.reset();
-      // this.contactusService.sendMessage(this.contactForm.value).subscribe(
-      //   res => {
-      //      console.log(res)
-      //     this.toastr.success('Login successfully', '', {
-      //       timeOut: 3000,
-      //     });
-      //     this.contactusService.sendMessageStatus(true);        
-      //   },
-      //   error => {
-      //     // console.log(error)
-      //     this.toastr.error(error.error.message, '', {
-      //       timeOut: 3000,
-      //     });
-      //   }
-      // )
+      // this.contactusService.sendMessageStatus(true);  
+      // this.toastr.success('Message Send Successfully', '', {
+      //   timeOut: 3000,
+      // });
+      // this.contactForm.reset();
+      this.contactusService.sendMessage(this.contactForm.value).subscribe(
+        res => {
+           console.log(res)
+          this.toastr.success(res.result, '', {
+            timeOut: 3000,
+          });
+         // this.contactusService.sendMessageStatus(true);        
+        },
+        error => {
+          // console.log(error)
+          this.toastr.error(error.error.message, '', {
+            timeOut: 3000,
+          });
+        }
+      )
      } else {
      this.markFormGroupTouched(this.contactForm)
      }

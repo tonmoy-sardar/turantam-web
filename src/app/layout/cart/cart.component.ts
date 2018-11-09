@@ -10,6 +10,7 @@ import { LoginComponent } from '../../core/components/login/login.component'
 
 // services
 import { CartService } from '../../core/services/cart.service';
+import { ContactusRoutingModule } from '../contactus/contactus-routing.module';
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html',
@@ -141,7 +142,17 @@ export class CartComponent implements OnInit {
       });
       dialogRef.afterClosed().subscribe(result => {
         console.log(result);
-        this.router.navigate(['/checkout']);
+        this.user_id = localStorage.getItem('userId')
+        
+        if (this.customer_cart_data.length > 0) {
+          this.customer_cart_data.forEach(x => {
+            x.customer_id = this.user_id;
+          })
+          this.setCartData();
+          this.router.navigate(['/checkout']);
+        }
+
+      
       })
     }
   }

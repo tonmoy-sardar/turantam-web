@@ -60,6 +60,7 @@ export class PackageComponent implements OnInit {
     this.packageService.getpackageList(id).subscribe(
       res => {
         this.packageList = res.result;
+        console.log(this.packageList);
         for (let i = 0; i < this.packageList.length; i++) {
           var index = this.customer_cart_data.findIndex(y => y.package_id == this.packageList[i]['id'] && y.customer_id == this.user_id);
 

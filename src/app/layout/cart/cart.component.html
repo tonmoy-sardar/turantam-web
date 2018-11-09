@@ -89,7 +89,7 @@
   <span class="dsc" [innerHTML]="cartData.description"></span>
   </td>
   <td data-title="Ad Status">
-      <form  class="plus-minas float-right" id="myform" method="POST" action="#">
+      <form  class="plus-minas float-right"  method="POST" action="#">
   <input (click)="decrement(i)" type="button" value="-" class="qtyminus" field="quantity"><input type="text" name="quantity" value="{{cartData.quantity}}" class="qty"><input (click)="increment(i)" type="button" value="+" class="qtyplus" field="quantity">
   </form>
   <!-- <div (click)="addtoCart(package)" *ngIf="!cartData.isCart" class="add-btn"><span class="add-text">Add</span><span class="plus">+</span></div> -->
@@ -111,7 +111,7 @@
   </table>
 
   <!-- <a [routerLink]="['/checkout']">Checkout</a> -->
-  <button class="btn btn-common"(click)="gotoCheckoutpage()" type="button">Check Out</button>
+  <button *ngIf="customer_cart_data.length > 0" class="btn btn-common"(click)="gotoCheckoutpage()" type="button">Check Out</button>
   </div>
   </div>
   </div>

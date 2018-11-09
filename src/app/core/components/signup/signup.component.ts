@@ -16,13 +16,15 @@ export class SignupComponent implements OnInit {
   title: string;
   toggle_btn: string;
   toggle_key: boolean;
-  formType:any;
+  formType: any;
+  getOtp: any;
+
   constructor(
     public dialogRef: MatDialogRef<SignupComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
     private toastr: ToastrService,
     private formBuilder: FormBuilder,
-    private loginService:LoginService
+    private loginService: LoginService
   ) { }
 
   ngOnInit() {
@@ -46,8 +48,12 @@ export class SignupComponent implements OnInit {
           Validators.pattern(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/)
         ]
       ],
-      password: ["", Validators.required]
+      password: ["", Validators.required],
+      contact: ["", Validators.required],
+      otp: [""]
     });
+
+    this.getOtp = "";
   }
 
   toggle() {
@@ -61,7 +67,7 @@ export class SignupComponent implements OnInit {
       this.toggle_btn = "Back to sign in";
     }
   }
-  
+
   markFormGroupTouched(formGroup: FormGroup) {
     (<any>Object).values(formGroup.controls).forEach(control => {
       control.markAsTouched();
@@ -87,8 +93,8 @@ export class SignupComponent implements OnInit {
     if (this.loginForm.valid) {
       this.loginService.userLogin(this.loginForm.value).subscribe(
         res => {
-           console.log(res)
-          localStorage.setItem('isLoggedin', 'true');          
+          console.log(res)
+          localStorage.setItem('isLoggedin', 'true');
           localStorage.setItem('userId', res['result']['id']);
           localStorage.setItem('userName', res['result']['name']);
           localStorage.setItem('userEmail', res['result']['email']);
@@ -96,7 +102,7 @@ export class SignupComponent implements OnInit {
             timeOut: 3000,
           });
           this.loginService.loginStatus(true);
-          this.dialogRef.close(true);          
+          this.dialogRef.close(true);
         },
         error => {
           // console.log(error)
@@ -113,34 +119,99 @@ export class SignupComponent implements OnInit {
   signUp() {
 
     if (this.signupForm.valid) {
-      console.log(this.signupForm.value.email);
-      localStorage.setItem('isLoggedin', 'true');
-      localStorage.setItem('userEmail', this.signupForm.value.email);
+
+
+      if (this.signupForm.value.otp) {
+        if (btoa(this.signupForm.value.otp) == this.getOtp) {
+          console.log(this.signupForm.value);
+          localStorage.setItem('isLoggedin', 'true');
+          localStorage.setItem('userEmail', this.signupForm.value.email);
           //this.loginService.loginStatus(true);
-          this.dialogRef.close(true);
-      this.loginService.userSignup(this.signupForm.value).subscribe(
-        res => {
-          // console.log(res)
-          localStorage.setItem('isLoggedin', 'true');          
-          localStorage.setItem('userId', res['result']['id']);
-          localStorage.setItem('userName', res['result']['name']);
-          localStorage.setItem('userEmail', res['result']['email']);
-          this.toastr.success('Register successfully', '', {
-            timeOut: 3000,
-          });
-          this.loginService.loginStatus(true);
-          this.dialogRef.close(true);
-        },
-        error => {
-          // console.log(error)
-          this.toastr.error(error.error.message, '', {
+          //  this.dialogRef.close(true);
+          this.signupForm.value.otp_verified = 1;
+          this.signupForm.value.user_type = 3;
+          console.log("Signup value with otp verified ", this.signupForm.value);
+          this.loginService.userSignup(this.signupForm.value).subscribe(
+            res => {
+              console.log(res);
+              //this.getOtp = res['result']['otp'];
+
+              localStorage.setItem('isLoggedin', 'true');
+              localStorage.setItem('userId', res['result']['id']);
+              localStorage.setItem('userName', res['result']['name']);
+              localStorage.setItem('userEmail', res['result']['email']);
+              this.toastr.success('Register successfully', '', {
+                timeOut: 3000,
+              });
+              this.loginService.loginStatus(true);
+              this.dialogRef.close(true);
+            },
+            error => {
+              // console.log(error)
+              this.toastr.error(error.error.message, '', {
+                timeOut: 3000,
+              });
+            }
+          )
+        }
+        else {
+          //alert("OTP Mismatch");
+          this.toastr.error('OTP mismatch . Please try again', '', {
             timeOut: 3000,
           });
         }
-      )
+      }
+      else {
+        console.log(this.signupForm.value);
+        localStorage.setItem('userEmail', this.signupForm.value.email);
+        this.signupForm.value.otp_verified = "";
+        this.signupForm.value.user_type = 3;
+        console.log(this.signupForm.value);
+        this.loginService.userSignup(this.signupForm.value).subscribe(
+          res => {
+            console.log(res);
+            this.getOtp = res['result']['otp'];
+            this.toastr.success('OTP has been send successfully', '', {
+              timeOut: 3000,
+            });
+          },
+          error => {
+            // console.log(error)
+            this.toastr.error(error.error.message, '', {
+              timeOut: 3000,
+            });
+          }
+        )
+      }
+
+
     } else {
       this.markFormGroupTouched(this.signupForm)
     }
+  }
+
+  resendOtp() {
+    console.log("Form Value ==>", this.signupForm.value);
+    // localStorage.setItem('isLoggedin', 'true');
+    localStorage.setItem('userEmail', this.signupForm.value.email);
+    this.signupForm.value.otp_verified = "";
+    this.signupForm.value.user_type = 3;
+    console.log(this.signupForm.value);
+    this.loginService.userSignup(this.signupForm.value).subscribe(
+      res => {
+        console.log(res);
+        this.getOtp = res['result']['otp'];
+        this.toastr.success('OTP has been send successfully', '', {
+          timeOut: 3000,
+        });
+      },
+      error => {
+        // console.log(error)
+        this.toastr.error(error.error.message, '', {
+          timeOut: 3000,
+        });
+      }
+    )
   }
 
 }

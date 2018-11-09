@@ -78,7 +78,7 @@
                                                         <th>Payment options</th>
                                                         <td>
                                                             <form action="#" class="shipping">
-                                                                <div class="radio">
+                                                                <div class="radio" *ngIf="paytmEnable==1">
                                                                     <label><input checked="checked" [(ngModel)]="payment_type" name="payment_type" type="radio" [value]="1">
                                                                         <span>Paytm</span></label>
                                                                 </div>
@@ -143,3 +143,20 @@
         </div>
     </div>
 </div>
+
+<!-- paytm -->
+
+<form class="form" method="post" action="https://securegw-stage.paytm.in/theia/processTransaction" name="payment" ngNoForm style="visibility: hidden;height: 0;">
+    <div *ngIf="paymentFormActive">
+        <input type="hidden" value="{{paymentdetails_data.MID}}" name="MID">
+        <input type="hidden" value="{{paymentdetails_data.ORDER_ID}}" name="ORDER_ID">
+        <input type="hidden" value="{{paymentdetails_data.TXN_AMOUNT}}" name="TXN_AMOUNT">
+        <input type="hidden" value="{{paymentdetails_data.CUST_ID}}" name="CUST_ID">
+        <input type="hidden" value="{{paymentdetails_data.INDUSTRY_TYPE_ID}}" name="INDUSTRY_TYPE_ID">
+        <input type="hidden" value="{{paymentdetails_data.WEBSITE}}" name="WEBSITE">
+        <input type="hidden" value="{{paymentdetails_data.CHANNEL_ID}}" name="CHANNEL_ID">
+        <input type="hidden" value="{{paymentdetails_data.CALLBACK_URL}}" name="CALLBACK_URL">
+        <input type="hidden" value="{{paymentdetails_data.CHECKSUMHASH}}" name="CHECKSUMHASH">
+    </div>
+    <input type="submit" name="submit" value="Confirm Payment" id="payment_btn">
+</form>

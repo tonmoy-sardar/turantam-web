@@ -21,4 +21,10 @@ export class CheckoutService {
     return this.http.post(environment.apiEndpoint + 'addorder/', data)
   }
 
+  paytmFormValue(order_no,order_amount,customer_email): Observable<any> {
+    order_amount =1;
+   // return this.http.get(environment.apiEndpoint + 'orderconfig/?price=' + order_amount + '&customer_email=' + customer_email + '&type=web')
+   return this.http.get(environment.apiEndpoint + 'orderconfig/?order_no=' + order_no + '&price=' + order_amount + '&customer_email=' + customer_email + '&type=web')
+  }
+
 }

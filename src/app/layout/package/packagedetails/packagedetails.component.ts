@@ -43,6 +43,9 @@ export class PackagedetailsComponent implements OnInit {
       this.user_id = localStorage.getItem('userId');
 
     }
+    else {
+      this.user_id = "";
+    }
     
     this.packageDetails(this.route.snapshot.params['id']);
 
@@ -86,7 +89,7 @@ export class PackagedetailsComponent implements OnInit {
   
   addtoCart(item) {
     console.log(item);
-    if (localStorage.getItem('isLoggedin')) {
+  //  if (localStorage.getItem('isLoggedin')) {
     var data = {
       customer_id: this.user_id,
       package_id: item.id,
@@ -109,16 +112,16 @@ export class PackagedetailsComponent implements OnInit {
       this.customer_cart_data.push(data);
       this.setCartData();
     }
-  }
-  else {
-    let dialogRef = this.dialog.open(LoginComponent, {
-      width: '525px',
-      data: {type:1}
-    });
-    dialogRef.afterClosed().subscribe(result => {
+ // }
+  // else {
+  //   let dialogRef = this.dialog.open(LoginComponent, {
+  //     width: '525px',
+  //     data: {type:1}
+  //   });
+  //   dialogRef.afterClosed().subscribe(result => {
      
-    })
-  }
+  //   })
+  // }
 
   this.cartService.cartNumberStatus(true);
   }

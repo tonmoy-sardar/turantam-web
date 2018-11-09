@@ -11,6 +11,9 @@ import { AddAddressComponent } from '../../core/components/add-address/add-addre
 // services
 import { CheckoutService } from '../../core/services/checkout.service';
 import { AddAddressService } from '../../core/services/add-address.service';
+import { CartService } from '../../core/services/cart.service';
+
+
 @Component({
   selector: 'app-checkout',
   templateUrl: './checkout.component.html',
@@ -28,9 +31,12 @@ export class CheckoutComponent implements OnInit {
   payment_type:any;
   deliveryAddress:any;
   user_email:any;
-  data:any;
+  order_data:any;
   order_details:any;
   orderStatus:any;
+  paymentdetails_data: any;
+  paymentFormActive: boolean;
+  paytmEnable:any;
   
 
   
@@ -42,6 +48,7 @@ export class CheckoutComponent implements OnInit {
     public dialog: MatDialog,
     private checkoutService:CheckoutService,
     private addAddressService:AddAddressService,
+    private cartService:CartService,
   ) { 
     addAddressService.getAddressStatus.subscribe(status => this.getAddressStatus(status));
    
@@ -49,14 +56,16 @@ export class CheckoutComponent implements OnInit {
 
   ngOnInit() {
     this.imageBaseUrl = environment.imageBaseUrl;
+    this.paytmEnable = environment.paytmEnable;
     if (localStorage.getItem('isLoggedin')) {
       this.user_id = localStorage.getItem('userId');
       this.user_email = localStorage.getItem('userEmail');
+      console.log(this.user_id);
 
     }
     this.populateData();
     this.getAddress(this.user_id);
-    this.payment_type =1;
+    this.payment_type =2;
   }
 
   populateData() {
@@ -131,20 +140,15 @@ export class CheckoutComponent implements OnInit {
   addressChange(address) {
     this.deliveryAddress = address.id;
   }
+
   placeOrder(payment_type) {
-    console.log("Payment Type==>",payment_type);
-    console.log("Address Id ==>",this.deliveryAddress);
-    console.log("Customer Id ==>",this.user_id);
-    console.log("Customer Email ==>",this.user_email);
-    console.log("Order Total Price ", this.total_item_price);
-    console.log("Order Details ",this.customer_cart_data);
-    this.data ={};
-    this.data.payment_type = payment_type;
-    this.data.address_id = this.deliveryAddress;
-    this.data.customer_id = this.user_id;
-    this.data.customer_email = this.user_email;
-    this.data.order_total_price = this.total_item_price;
-    console.log(this.data);
+    this.order_data ={};
+    this.order_data.payment_type = payment_type;
+    this.order_data.address_id = this.deliveryAddress;
+    this.order_data.customer_id = this.user_id;
+    this.order_data.customer_email = this.user_email;
+    this.order_data.order_total_price = this.total_item_price;
+    console.log(this.order_data);
     this.order_details =[];
   this.customer_cart_data.forEach(item => {
    this.order_details.push(
@@ -158,19 +162,58 @@ export class CheckoutComponent implements OnInit {
      }
    );
     });
-    this.data.order_details = this.order_details;
-    console.log(this.data);
-    
-    this.checkoutService.addOrder(this.data).subscribe(
-      res => {
-       this.orderStatus = res.result;
-       this.router.navigateByUrl('/ordersuccess/'+this.orderStatus.id);
-      },
-      error => {
-        console.log(error);
-      }
-    );
-    
+    this.order_data.order_details = this.order_details;
+    console.log(this.order_data);
+    // if(payment_type == 1) {
+    //   var sum = this.total_item_price;
+    //   this.getPaymentSettingsDetails(sum);
+    // }
+    // else {
+      this.checkoutService.addOrder(this.order_data).subscribe(
+        res => {
+         this.orderStatus = res.result;
+         if(payment_type ==1) {
+          this.getPaymentSettingsDetails();
+         }
+         else {
+          sessionStorage.clear();
+          this.cartService.cartNumberStatus(true);
+          this.router.navigateByUrl('/ordersuccess/'+this.orderStatus.id);
+         }
+         
+        },
+        error => {
+          console.log(error);
+        }
+      );
+   // }
+
+  }
+
+
+  getPaymentSettingsDetails() {
+    // console.log(this.orderStatus);
+    // console.log(this.total_item_price);
+    // console.log(this.user_email);
+
+      this.checkoutService.paytmFormValue(this.orderStatus.order_no,this.total_item_price,this.user_email).subscribe(
+        (
+          data => {
+            console.log(data);
+            this.paymentdetails_data = data.result;
+            this.paymentFormActive = true;
+            console.log(this.paymentdetails_data);
+            console.log(this.order_data);
+            let btn: HTMLElement = document.getElementById('payment_btn') as HTMLElement;
+            setTimeout(function () {
+              btn.click();
+            }, 100);
+            
+          }
+        ),
+      );
+
+   
   }
 
 }
