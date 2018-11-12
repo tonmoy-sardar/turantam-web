@@ -19,9 +19,12 @@ import { CartService } from '../../core/services/cart.service';
 export class PackageComponent implements OnInit {
   qty: any;
   packageList: any;
+  serviceList:any;
+  subCatName:any;
   user_id: any;
   customer_cart_data: any;
   imageBaseUrl: string;
+  serviceId:any;
 
   constructor(
     private http: HttpClient,
@@ -50,17 +53,38 @@ export class PackageComponent implements OnInit {
     else {
       this.customer_cart_data = [];
     }
+
+    this.serviceId = this.route.snapshot.params['serviceid'];
   
-    this.getpackageList(this.route.snapshot.params['id']);
+
+    this.getAllServiceList(this.route.snapshot.params['serviceid']);
+    this.getpackageList(this.route.snapshot.params['subcatid']);
   
 
   }
+  
+
+  getAllServiceList(subcatId) {
+    this.packageService.getServiceList(subcatId).subscribe(
+      res => {
+        this.subCatName = res.subcategory_name;
+        this.serviceList = res.result;
+        console.log(this.serviceList);
+
+      },
+      error => {
+        console.log(error);
+      }
+    );
+  }
+
+
 
   getpackageList(id) {
     this.packageService.getpackageList(id).subscribe(
       res => {
         this.packageList = res.result;
-        console.log(this.packageList);
+       // console.log(this.packageList);
         for (let i = 0; i < this.packageList.length; i++) {
           var index = this.customer_cart_data.findIndex(y => y.package_id == this.packageList[i]['id'] && y.customer_id == this.user_id);
 
@@ -192,8 +216,14 @@ export class PackageComponent implements OnInit {
     this.qty = 0;
   }
 
+  gotoPackageListing(serviceid,subcatid) {
+    this.router.navigateByUrl('/package/' + serviceid + '/' + subcatid);
+    this.getpackageList(subcatid);
+  }
+
   gotoPackagedetails() {
     this.router.navigateByUrl('/package/details');
+    
  
   }
 

@@ -15,7 +15,7 @@ const routes: Routes = [
       { path: 'home/:name', loadChildren: './home/home.module#HomeModule' },
       { path: 'subcategory/:id', loadChildren: './subcategory/subcategory.module#SubcategoryModule' },
       { path: 'package', loadChildren: './package/package.module#PackageModule' },
-      { path: 'package/:id', loadChildren: './package/package.module#PackageModule' },
+      { path: 'package/:serviceid/:subcatid', loadChildren: './package/package.module#PackageModule' },
       { path: 'category', loadChildren: './category/category.module#categoryModule' },
       { path: 'category/:id', loadChildren: './category/category.module#categoryModule' },
       { path: 'category/:id/:cityid', loadChildren: './category/category.module#categoryModule' },
@@ -25,6 +25,9 @@ const routes: Routes = [
       { path: 'myorders', loadChildren: './myorders/myorders.module#MyordersModule',canActivate: [AuthGuard] },
       { path: 'myprofile', loadChildren: './myprofile/myprofile.module#MyprofileModule',canActivate: [AuthGuard] },
       { path: 'ordersuccess/:id', loadChildren: './order-success/order-success.module#OrderSuccessModule',canActivate: [AuthGuard] },
+      { path: 'privacy', loadChildren: './privacy-policy/privacy-policy.module#PrivacyPolicyModule' },
+      { path: 'terms-condition', loadChildren: './terms-condition/terms-condition.module#TermsConditionModule' },
+     { path: 'allcategory', loadChildren: './allcategory/allcategory.module#AllcategoryModule' },
       { path: '**', loadChildren: './error/error.module#ErrorModule' },
              
     ]

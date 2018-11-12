@@ -9,7 +9,7 @@ import { MyordersService } from '../../core/services/myorders.service';
 })
 export class MyordersComponent implements OnInit {
   user_id :string;
-  myOrderList:any;
+  myOrderList =[];
   constructor(
     private router: Router,
     private route: ActivatedRoute,
@@ -33,6 +33,10 @@ export class MyordersComponent implements OnInit {
         console.log(error);
       }
     );
+  }
+
+  addRating(i) {
+    console.log(i);
   }
 
 }

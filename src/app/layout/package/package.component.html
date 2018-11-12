@@ -42,38 +42,15 @@
         <aside>
 
           <div class="widget categories bg-light">
-            <h4 class="widget-title">Beauty & Spa</h4>
+            <h4 class="widget-title">{{subCatName}}</h4>
             <ul class="categories-list">
-              <li>
-                <a href="#">
+              <li *ngFor="let service of serviceList">
+                <a (click)="gotoPackageListing(serviceId,service.id)">
                   <i class="lni-dinner"></i>
-                  Salon at home for Women
+                 {{service.name}}
                 </a>
               </li>
-              <li>
-                <a href="#">
-                  <i class="lni-control-panel"></i>
-                  Bridal Makeup Artist
-                </a>
-              </li>
-              <li>
-                <a href="#">
-                  <i class="lni-github"></i>
-                  Mehendi Artists
-                </a>
-              </li>
-              <li>
-                <a href="#">
-                  <i class="lni-coffee-cup"></i>
-                  Massage for Women
-                </a>
-              </li>
-              <li>
-                <a href="#">
-                  <i class="lni-home"></i>
-                  Massage for Men
-                </a>
-              </li>
+              
 
             </ul>
           </div>
@@ -92,7 +69,7 @@
                   <div class="featured-box">
                     <figure>
                       <div class="icon">
-                        <span><i class="fa fa-star"></i> 4.5</span>
+                        <span><i class="fa fa-star"></i> {{package.avg_rating}}</span>
                       </div>
                       <a [routerLink]="['/package/details', package.slug]"><img class="img-fluid" [src]="package.image_small != null && imageBaseUrl+ package.image_small || 'assets/img/no-img.png'"
                           alt=""></a>

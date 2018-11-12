@@ -8,7 +8,7 @@ const routes: Routes = [
     component: PackageComponent
     },
     {
-      path: 'package/:id',
+      path: 'package/:serviceid/:subcatid',
       component: PackageComponent
       },
     {

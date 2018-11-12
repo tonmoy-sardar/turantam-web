@@ -29,7 +29,7 @@
             <div class="dashboard-box">
         <h2 class="dashbord-title">Order History</h2>
         </div>
-           <table class="table table-responsive dashboardtable tablemyads">
+           <table class="table table-responsive dashboardtable tablemyads" *ngIf="myOrderList.length > 0"> 
         <thead>
         <tr>
         
@@ -68,6 +68,7 @@
               <div class="panel-body">Quantity : {{orderDetails.quantity}}</div>
               <div class="panel-body">Unit Price : {{orderDetails.unit_price}}</div>
               <div class="panel-body">Total Price : {{orderDetails.total_cost}}</div>
+              <ngb-rating [(rate)]="currentRate" max="5" (rateChange)="addRating($event)"></ngb-rating>
               <hr>
             </div>
       
@@ -75,6 +76,7 @@
 
         </tbody>
         </table> 
+        <p *ngIf="myOrderList.length == 0" class="no-records">No Records Found !!!!</p>
            <hr> 
             
           

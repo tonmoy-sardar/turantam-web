@@ -12,6 +12,7 @@ export class CategoryService {
   ) { }
 
   getsubCat(data): Observable<any> {
+    console.log(data);
     return this.http.get(environment.apiEndpoint+'serviceslistbycatid/'+data)
   }
 

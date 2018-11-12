@@ -15,7 +15,7 @@ import { environment } from '../../../../environments/environment';
 })
 export class MyprofileSidebarComponent implements OnInit {
   loggedIn: boolean;
-  profileDetails:any;
+  profileDetails : any;
   user_id:string;
   imageBaseUrl:string;
   constructor(
@@ -37,7 +37,6 @@ export class MyprofileSidebarComponent implements OnInit {
     this.myprofileService.getProfile(id).subscribe(
       res => {
         this.profileDetails = res['result'];
-        console.log(this.profileDetails);
       },
       error => {
         console.log(error);

@@ -32,8 +32,8 @@
     </div>
     <div class="category-content">
     <ul>
-        <li *ngFor="let service of subcatlist.services ; let i = index">
-         <a  [routerLink]="['/package', service.id]" >{{service.name}}</a>
+        <li  *ngFor="let service of subcatlist.services ; let i = index" (click)="gotoPackageListing(subcatlist.id,service.id)">
+         <a >{{service.name}}</a>
     
         </li>
        

@@ -26,9 +26,10 @@ export class HomeComponent implements OnInit {
   locationList = [];
   recentServices: any;
   imageBaseUrl: string;
-  locationid: any;
+  locationId: any;
   catid: any;
-  catname:string;
+  catname: string;
+  defaultLocation: any;
   constructor(
     private http: HttpClient,
     private router: Router,
@@ -37,27 +38,30 @@ export class HomeComponent implements OnInit {
     private googlemapsService: GooglemapsService,
     private homeService: HomeService
   ) {
-    this.catname ="";
-   }
+    this.catname = "";
+  }
 
   ngOnInit() {
     this.imageBaseUrl = environment.imageBaseUrl;
+   if(localStorage.getItem('myCurrentLocationId')) {
+    this.locationId = localStorage.getItem('myCurrentLocationId');
+   }
+   else {
+    this.locationId = 2;
     this.getLocation();
+   }
+    
     this.getCategoryList();
     this.getLocationApi();
     this.recentService();
+    //this.locationId = 2;
 
   }
 
-  // gotoLocation(event: any) {
-  //   this.location = event.target.value;
-  //   localStorage.setItem('location', this.location);
-  //   this.router.navigateByUrl('/home/' + this.location);
-
-  // }
 
   gotoLocation(id) {
-    this.locationid = id;
+    this.locationId = id;
+    localStorage.setItem('myCurrentLocationId', this.locationId);
   }
 
   gotoSearch(cityid, catname) {
@@ -65,13 +69,13 @@ export class HomeComponent implements OnInit {
       res => {
         if (res['result'] != null) {
           this.catid = res['result']['id'];
-          this.router.navigateByUrl('/category/' + this.catid + '/' + cityid);
+         // this.router.navigateByUrl('/category/' + this.catid + '/' + cityid);
+         this.router.navigateByUrl('/category/' + this.catid);
         }
         else {
-         // alert("Wrong Category");
-         this.toastr.error('Wrong Category', '', {
-          timeOut: 3000,
-        });
+          this.toastr.error('Wrong Category', '', {
+            timeOut: 3000,
+          });
         }
       },
       error => {
@@ -80,54 +84,48 @@ export class HomeComponent implements OnInit {
     );
   }
 
-  getLocation() {
 
-    // if (navigator.geolocation) {
-    //   navigator.geolocation.getCurrentPosition(this.showPosition,this.showError);
-    // } else {
-      
-    // }
-    
+  getLocation() {
     if (navigator.geolocation) {
-      
       navigator.geolocation.getCurrentPosition(position => {
         this.location = position.coords;
         this.lat = position.coords.latitude;
         this.long = position.coords.longitude;
         this.getAddress();
-      });
+      },
+        function (error) {
+          if (error.code == error.PERMISSION_DENIED)
+            console.log("you denied me :-(");
+          localStorage.setItem('myCurrentLocationId', "2");
+
+
+        });
     }
-   
   }
 
-  // showPosition(position) {
-  //  // if (navigator.geolocation) {
-  //     navigator.geolocation.getCurrentPosition(position => {
-  //      // this.location = position.coords;
-  //      console.log(position.coords.latitude);
-  //      console.log(position.coords.longitude);
-  //       this.lat = position.coords.latitude;
-  //       this.long = position.coords.longitude;
-        
-  //      // this.getAddress();
-  //     });
-  //  // }   
-  // }
-  
-  // showError(error) {
-  //   console.log("Location Not Found !!!");
-  // }
+
 
   getAddress() {
     this.googlemapsService.getCurrentLocation(this.lat, this.long).subscribe(
       res => {
         this.location = res.address;
-        console.log(this.location);
+       // console.log(this.location);
         this.homeService.getlocationName(this.location.toString().trim()).subscribe(
           res => {
-            
-            this.locationid = res['result'].id;
-            console.log(this.locationid);
+            if (res['result'] == null) {
+              this.toastr.error('Turantam Services is not available in your current location. You can change the Location From Dropdown', '', {
+                timeOut: 3000,
+              });
+              localStorage.setItem('myCurrentLocationId', "2");
+              this.locationId = localStorage.getItem('myCurrentLocationId');
+            }
+            else {
+             // console.log(res['result'])
+              localStorage.setItem('myCurrentLocationId', res['result'].id);
+              this.locationId = localStorage.getItem('myCurrentLocationId');
+            //  console.log(this.locationId);
+            }
+
           },
           error => {
             console.log(error);
@@ -144,7 +142,6 @@ export class HomeComponent implements OnInit {
     this.homeService.getcategoryList().subscribe(
       res => {
         this.categoryList = res.result;
-        console.log(this.categoryList);
       },
       error => {
         console.log(error);
@@ -156,6 +153,7 @@ export class HomeComponent implements OnInit {
     this.homeService.getlocationapi().subscribe(
       res => {
         this.locationList = res['result'];
+       // console.log(this.locationList);
       },
       error => {
         console.log(error);
@@ -168,15 +166,12 @@ export class HomeComponent implements OnInit {
       res => {
 
         this.recentServices = res['result'];
+        //console.log(this.recentServices);
       },
       error => {
         console.log(error);
       }
     );
   }
-
-
-
-
 
 }

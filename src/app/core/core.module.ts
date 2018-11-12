@@ -39,6 +39,7 @@ import { AddAddressService } from './services/add-address.service';
 import { OrderSuccessService } from './services/order-success.service';
 import { MyordersService } from './services/myorders.service';
 import { MyprofileService } from './services/myprofile.service';
+import { AllcategoryService } from './services/allcategory.service';
 
 // component
 import { HeaderComponent } from './components/header/header.component';
@@ -48,6 +49,7 @@ import { SignupComponent } from './components/signup/signup.component';
 import { ForgotComponent } from './components/forgot/forgot.component';
 import { MyprofileSidebarComponent } from './components/myprofile-sidebar/myprofile-sidebar.component';
 import { AddAddressComponent } from './components/add-address/add-address.component';
+
 
 
 
@@ -133,7 +135,8 @@ export class CoreModule {
         AddAddressService,
         OrderSuccessService,
         MyordersService,
-        MyprofileService
+        MyprofileService,
+        AllcategoryService
       ]
     };
   }
