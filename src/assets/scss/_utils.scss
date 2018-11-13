@@ -387,7 +387,7 @@ a.back-to-top:focus {
 }
 
 .page-header {
-    padding: 115px 0 25px;
+    padding: 145px 0 0;
     position: relative
 }
 
@@ -634,8 +634,8 @@ a.back-to-top:focus {
 .navbar-expand-lg .navbar-nav li a:hover,
 .navbar-expand-lg .navbar-nav li .active>a,
 .navbar-expand-lg .navbar-nav li a:focus {
-    color: #e40046;
-    outline: none
+    color: #fff;
+    background: #e40046
 }
 
 .navbar {
@@ -643,6 +643,11 @@ a.back-to-top:focus {
 }
 
 .navbar li.active a.nav-link {
+    color: #fff;
+    background: #e40046
+}
+
+.navbar-nav li a.nav-link:hover {
     color: #fff;
     background: #e40046
 }
@@ -1497,7 +1502,7 @@ a.back-to-top:focus {
     position: relative
 }
 
-.featured-box figure img {
+.latest-services figure img {
     -webkit-transform: scale(.8);
     -moz-transform: scale(.8);
     transform: scale(.8);
@@ -1506,7 +1511,7 @@ a.back-to-top:focus {
     height: 300px;
 }
 
-.featured-box figure img:hover {
+.latest-services figure img:hover {
     -webkit-transform: scale(.9);
     -moz-transform: scale(.9);
     transform: scale(.9);
@@ -5905,30 +5910,34 @@ footer .menu li a:hover {
 /* 26.10.2018 packages page start */
 
 .qty {
-    width: 29px;
-    height: 32px;
+    width: 24px;
+    height: 24px;
     text-align: center;
     border: 0;
-    border-top: 1px solid #aaa;
-    border-bottom: 1px solid #aaa;
+}
+
+.plus-minas {
+    border: 2px solid #e40046;
 }
 
 input.qtyplus {
-    width: 29px;
-    height: 32px;
+    width: 24px;
+    height: 26px;
     border: 1px solid #e40046;
     background: #e40046;
     color: #fff;
     cursor: pointer;
+    line-height: 1;
 }
 
 input.qtyminus {
-    width: 29px;
-    height: 32px;
+    width: 24px;
+    height: 26px;
     border: 1px solid #e40046;
     background: #e40046;
     color: #fff;
     cursor: pointer;
+    line-height: 1;
 }
 
 .plus-minus {}
@@ -6062,6 +6071,10 @@ input.qtyminus {
     background-color: #ececec;
     border-radius: 50%;
     border: 3px solid #e6e6e6;
+}
+
+.packege-list img {
+    height: 300px;
 }
 
 // For responsive css file  Start 

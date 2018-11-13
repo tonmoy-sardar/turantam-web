@@ -21,7 +21,7 @@
         <div class="row mb-30">
             <div class="col-lg-8 col-md-8 col-xs-12">
 
-                    <form role="form" [formGroup]="contactForm" novalidate (submit)="sendMessage()">
+                <form role="form" [formGroup]="contactForm" novalidate (submit)="sendMessage()">
                     <h2 class="contact-title">
                         Send Message Us
                     </h2>
@@ -30,32 +30,29 @@
                             <div class="row">
                                 <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
                                     <div class="form-group">
-                                        <input type="text" class="form-control" id="name" name="name" formControlName="name"
-                                            placeholder="Name:" required data-error="Please enter your name"  [ngClass]="displayFieldCss(contactForm,'name')">
-                                            <div class="invalid-feedback text-left" *ngIf="isFieldValid(contactForm,'name')">
-                                                    Please enter name
-                                                  </div>
+                                        <input type="text" class="form-control" id="name" name="name" formControlName="name" placeholder="Name:" required data-error="Please enter your name" [ngClass]="displayFieldCss(contactForm,'name')">
+                                        <div class="invalid-feedback text-left" *ngIf="isFieldValid(contactForm,'name')">
+                                            Please enter name
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
                                     <div class="form-group">
-                                        <input type="email" class="form-control" id="email" formControlName="email"
-                                            placeholder="Email:" required data-error="Please enter your email"  [ngClass]="displayFieldCss(contactForm,'email')">
-                                            <div class="invalid-feedback text-left" *ngIf="contactForm.controls['email'].hasError('pattern') && !contactForm.controls['email'].hasError('required')">
-                                                    Please enter a valid email address
-                                                  </div>
-                                                  <div class="invalid-feedback text-left" *ngIf="contactForm.controls['email'].hasError('required')">
-                                                    Email is required
-                                                  </div>
+                                        <input type="email" class="form-control" id="email" formControlName="email" placeholder="Email:" required data-error="Please enter your email" [ngClass]="displayFieldCss(contactForm,'email')">
+                                        <div class="invalid-feedback text-left" *ngIf="contactForm.controls['email'].hasError('pattern') && !contactForm.controls['email'].hasError('required')">
+                                            Please enter a valid email address
+                                        </div>
+                                        <div class="invalid-feedback text-left" *ngIf="contactForm.controls['email'].hasError('required')">
+                                            Email is required
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
                                     <div class="form-group">
-                                        <input type="text" class="form-control" id="msg_subject" name="phone"
-                                            formControlName="phone" placeholder="Phone no:" required data-error="Please enter your Phone Number"  [ngClass]="displayFieldCss(contactForm,'phone')">
-                                            <div class="invalid-feedback text-left" *ngIf="isFieldValid(contactForm,'phone')">
-                                                    Please enter Phone Number
-                                                  </div>
+                                        <input type="text" class="form-control" id="msg_subject" name="phone" formControlName="phone" placeholder="Phone no:" required data-error="Please enter your Phone Number" [ngClass]="displayFieldCss(contactForm,'phone')">
+                                        <div class="invalid-feedback text-left" *ngIf="isFieldValid(contactForm,'phone')">
+                                            Please enter Phone Number
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -64,17 +61,16 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <textarea class="form-control" formControlName="message" name="message" placeholder="Massage"
-                                            rows="7" data-error="Write your message"  [ngClass]="displayFieldCss(contactForm,'message')" required></textarea>
-                                            <div class="invalid-feedback text-left" *ngIf="isFieldValid(contactForm,'message')">
-                                                    Please enter Message
-                                                  </div>
+                                        <textarea class="form-control" formControlName="message" name="message" placeholder="Massage" rows="7" data-error="Write your message" [ngClass]="displayFieldCss(contactForm,'message')" required></textarea>
+                                        <div class="invalid-feedback text-left" *ngIf="isFieldValid(contactForm,'message')">
+                                            Please enter Message
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-12">
-                            <button type="submit" id="submit" class="btn btn-common">Submit Now</button>
+                            <button type="submit" id="submit" class="btn btn-primary">Submit Now</button>
                             <div id="msgSubmit" class="h3 text-center hidden"></div>
                             <div class="clearfix"></div>
                         </div>
@@ -88,8 +84,7 @@
                     <div class="contact-datails">
                         <ul class="list-unstyled info">
                             <li><span>Address : </span>
-                                <p>Shyam Towers, EN-32, Salt Lake, Sector-V,
-                                    Kolkata - 700 091</p>
+                                <p>Shyam Towers, EN-32, Salt Lake, Sector-V, Kolkata - 700 091</p>
                             </li>
                             <li><span>Email : </span>
                                 <p><a href="#">contact@shyamfuture.com </a></p>
@@ -104,8 +99,8 @@
         </div>
         <div class="row">
             <div class="col-12 iframe-map">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m17!1m8!1m3!1d58946.30953796349!2d88.431474!3d22.573704!3m2!1i1024!2i768!4f13.1!4m6!3e6!4m0!4m3!3m2!1d22.5737038!2d88.4314744!5e0!3m2!1sen!2sin!4v1540983892960"
-                    width="100%" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m17!1m8!1m3!1d58946.30953796349!2d88.431474!3d22.573704!3m2!1i1024!2i768!4f13.1!4m6!3e6!4m0!4m3!3m2!1d22.5737038!2d88.4314744!5e0!3m2!1sen!2sin!4v1540983892960" width="100%" height="450" frameborder="0"
+                    style="border:0" allowfullscreen></iframe>
             </div>
         </div>
 
