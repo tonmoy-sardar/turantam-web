@@ -45,7 +45,7 @@
             <h4 class="widget-title">{{subCatName}}</h4>
             <ul class="categories-list">
               <li *ngFor="let service of serviceList">
-                <a (click)="gotoPackageListing(serviceId,service.id)">
+                <a (click)="gotoPackageListing(service.slug,subCatId)">
                   <i class="lni-dinner"></i>
                  {{service.name}}
                 </a>
@@ -94,7 +94,7 @@
 
                   </div>
                 </div>
-                <!-- <p class="no-records" *ngIf="packageList.length <1">Data Not Found</p> -->
+                 <!-- <p class="no-records" *ngIf="packageList.length < 1">No Records Found</p>  -->
                   </div>
             </div>
            

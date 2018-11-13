@@ -22,7 +22,12 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <input type="text" [(ngModel)]="catname" name="customword" class="form-control" placeholder="What are you looking for?">
+                                        <input type="hidden" [(ngModel)]="catname" name="customword" class="form-control" placeholder="What are you looking for?">
+                                    <!-- <input type="text" [(ngModel)]="catname" name="customword" class="form-control" placeholder="What are you looking for?"> -->
+                                    <input type="text" matInput (input)="onCategoryChanged($event.target.value)" [matAutocomplete]="auto" class="form-control" placeholder="What are you looking for?">
+                                    <mat-autocomplete #auto="matAutocomplete">
+                                        <mat-option *ngFor="let catlist of catList" [value]="catlist.name" (click)="selectCategoty(catlist)">{{ catlist.name }}</mat-option>
+                                    </mat-autocomplete>
                                 </div>
 
                                 <button class="btn btn-common"(click)="gotoSearch(locationId,catname)" type="button"><i class="fa fa-search"></i> Search Now</button>
@@ -78,7 +83,7 @@
                 <div class="featured-box">
                     <figure>
 
-                        <a href="javaScript:Void(0)"><img class="img-fluid" [src]="services.image != null && imageBaseUrl+ services.image || 'assets/img/no-img.png'" alt=""></a>
+                        <a href="javaScript:Void(0)" (click)="gotoPackageListing(services.slug,services.category_slug)"><img class="img-fluid" [src]="services.image != null && imageBaseUrl+ services.image || 'assets/img/no-img.png'" alt=""></a>
                     </figure>
                     <div class="feature-content">
                         

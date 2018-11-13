@@ -119,11 +119,11 @@
                     </div>
 
                     <div class="widget bg-light">
-                        <h4 class="widget-title">More Ads and Catagory</h4>
+                        <h4 class="widget-title">More Categories</h4>
                         <ul class="posts-list">
                             <li *ngFor="let recentservice of recentserviceList ; let i = index">
                                 <div class="widget-thumb">
-                                    <a [routerLink]="['/category', recentservice.id]"><img [src]="recentservice.image_small != '' && imageBaseUrl+ recentservice.image_small || 'assets/img/no-img.png'"
+                                    <a [routerLink]="['/category', recentservice.slug]"><img [src]="recentservice.image_small != '' && imageBaseUrl+ recentservice.image_small || 'assets/img/no-img.png'"
                                             alt=""></a>
                                 </div>
                                 <div class="widget-content">

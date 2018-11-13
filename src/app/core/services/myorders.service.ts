@@ -15,4 +15,8 @@ export class MyordersService {
     return this.http.get(environment.apiEndpoint + 'orderlistbycustid/'+data)
   }
 
+  addRating(data): Observable<any> {
+    return this.http.post(environment.apiEndpoint + 'addpackagerating/', data)
+  }
+
 }
