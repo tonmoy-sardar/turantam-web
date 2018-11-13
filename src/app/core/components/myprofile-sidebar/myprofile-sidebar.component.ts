@@ -47,6 +47,7 @@ export class MyprofileSidebarComponent implements OnInit {
   logout() {
     this.loginService.logOutStatus(true);
     localStorage.clear();
+    sessionStorage.clear();
     this.loggedIn = false;
     this.router.navigate(['/']);
 

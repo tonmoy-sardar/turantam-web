@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { PackageService } from '../../core/services/package.service';
 import { environment } from '../../../environments/environment';
+import { ToastrService } from 'ngx-toastr';
 
 // core 
 import { AddAddressComponent } from '../../core/components/add-address/add-address.component'
@@ -49,6 +50,7 @@ export class CheckoutComponent implements OnInit {
     private checkoutService:CheckoutService,
     private addAddressService:AddAddressService,
     private cartService:CartService,
+    private toastr: ToastrService,
   ) { 
     addAddressService.getAddressStatus.subscribe(status => this.getAddressStatus(status));
    
@@ -142,51 +144,56 @@ export class CheckoutComponent implements OnInit {
   }
 
   placeOrder(payment_type) {
-    this.order_data ={};
-    this.order_data.payment_type = payment_type;
-    this.order_data.address_id = this.deliveryAddress;
-    this.order_data.customer_id = this.user_id;
-    this.order_data.customer_email = this.user_email;
-    this.order_data.order_total_price = this.total_item_price;
-    console.log(this.order_data);
-    this.order_details =[];
-  this.customer_cart_data.forEach(item => {
-   this.order_details.push(
-     {
-       'package_id':item.package_id,
-       'quantity':item.quantity,
-       'unit_price':item.price,
-       'IGST':'',
-       'CGST':'',
-       'GST':''
-     }
-   );
-    });
-    this.order_data.order_details = this.order_details;
-    console.log(this.order_data);
-    // if(payment_type == 1) {
-    //   var sum = this.total_item_price;
-    //   this.getPaymentSettingsDetails(sum);
-    // }
-    // else {
-      this.checkoutService.addOrder(this.order_data).subscribe(
-        res => {
-         this.orderStatus = res.result;
-         if(payment_type ==1) {
-          this.getPaymentSettingsDetails();
-         }
-         else {
-          sessionStorage.clear();
-          this.cartService.cartNumberStatus(true);
-          this.router.navigateByUrl('/ordersuccess/'+this.orderStatus.id);
-         }
-         
-        },
-        error => {
-          console.log(error);
-        }
-      );
-   // }
+
+    if(this.deliveryAddress) {
+      this.order_data ={};
+      this.order_data.payment_type = payment_type;
+      this.order_data.address_id = this.deliveryAddress;
+      this.order_data.customer_id = this.user_id;
+      this.order_data.customer_email = this.user_email;
+      this.order_data.order_total_price = this.total_item_price;
+      console.log(this.order_data);
+      this.order_details =[];
+    this.customer_cart_data.forEach(item => {
+     this.order_details.push(
+       {
+         'package_id':item.package_id,
+         'quantity':item.quantity,
+         'unit_price':item.price,
+         'IGST':'',
+         'CGST':'',
+         'GST':''
+       }
+     );
+      });
+      this.order_data.order_details = this.order_details;
+      console.log(this.order_data);
+
+        this.checkoutService.addOrder(this.order_data).subscribe(
+          res => {
+           this.orderStatus = res.result;
+           if(payment_type ==1) {
+            this.getPaymentSettingsDetails();
+           }
+           else {
+            sessionStorage.clear();
+            this.cartService.cartNumberStatus(true);
+            this.router.navigateByUrl('/ordersuccess/'+this.orderStatus.id);
+           }
+           
+          },
+          error => {
+            console.log(error);
+          }
+        );
+    
+    }
+    else {
+      this.toastr.error('Please Select a Delivery Address', '', {
+        timeOut: 6000,
+      });
+    }
+   
 
   }
 

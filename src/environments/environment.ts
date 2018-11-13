@@ -6,5 +6,6 @@ export const environment = {
   // imageBaseUrl: "http://192.168.24.208/turantam/uploads/"
   apiEndpoint: "http://shyamfuture.com/turantam/api/",
   imageBaseUrl: "http://shyamfuture.com/turantam/uploads/",
-  paytmEnable :0 // 0 : not enable , 1: enable
+  paytmEnable :0 ,// 0 : not enable , 1: enable
+  defaultLocation :"Howrah"
 };

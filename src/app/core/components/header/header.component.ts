@@ -137,6 +137,7 @@ loadUserInfo() {
 logout() {
   // this.authService.signOut();
   localStorage.clear();
+  sessionStorage.clear();
   this.loggedIn = false;
   this.router.navigate(['/']);
 }
