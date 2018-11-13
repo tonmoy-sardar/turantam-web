@@ -30,6 +30,7 @@ export class HomeComponent implements OnInit {
   catid: any;
   catname: string;
   defaultLocation: any;
+  catList =[];
   constructor(
     private http: HttpClient,
     private router: Router,
@@ -65,23 +66,30 @@ export class HomeComponent implements OnInit {
   }
 
   gotoSearch(cityid, catname) {
-    this.homeService.getcategoryName(catname).subscribe(
-      res => {
-        if (res['result'] != null) {
-          this.catid = res['result']['id'];
-         // this.router.navigateByUrl('/category/' + this.catid + '/' + cityid);
-         this.router.navigateByUrl('/category/' + this.catid);
-        }
-        else {
-          this.toastr.error('Wrong Category', '', {
-            timeOut: 3000,
-          });
-        }
-      },
-      error => {
-        console.log(error);
-      }
-    );
+    if(catname =='') {
+      this.router.navigateByUrl('/allcategory');
+    }
+    else {
+      this.router.navigateByUrl('/category/' + catname);
+      // this.homeService.getcategoryName(catname).subscribe(
+      //   res => {
+      //     if (res['result'] != null) {
+      //       this.catid = res['result']['id'];
+      //      // this.router.navigateByUrl('/category/' + this.catid + '/' + cityid);
+      //      this.router.navigateByUrl('/category/' + this.catid);
+      //     }
+      //     else {
+      //       this.toastr.error('Wrong Category', '', {
+      //         timeOut: 3000,
+      //       });
+      //     }
+      //   },
+      //   error => {
+      //     console.log(error);
+      //   }
+      // );
+    }
+
   }
 
 
@@ -168,14 +176,36 @@ export class HomeComponent implements OnInit {
   recentService() {
     this.homeService.recentService().subscribe(
       res => {
-
+        console.log("Home Page Services==>",res);
         this.recentServices = res['result'];
-        //console.log(this.recentServices);
       },
       error => {
         console.log(error);
       }
     );
   }
+
+  gotoPackageListing(serviceid,subcatid) {
+    this.router.navigateByUrl('/package/' + serviceid + '/' + subcatid);
+  }
+
+  onCategoryChanged(searchStr: string): void {
+   
+    this.homeService.getCatList(searchStr).subscribe(
+      res => {
+        
+        console.log("Cat List==>",res);
+        this.catList = res['result'];
+      },
+      error => {
+        console.log(error);
+      }
+    );
+    }
+
+    selectCategoty(catlist) {
+      console.log(catlist);
+      this.catname = catlist.slug;
+    }
 
 }

@@ -69,7 +69,13 @@
               <div class="panel-body">Unit Price : {{orderDetails.unit_price}}</div>
               <div class="panel-body">Total Price : {{orderDetails.total_cost}}</div>
               <!-- <ngb-rating [(rate)]="currentRate" max="5" (change)="addRating($event)"></ngb-rating> -->
-              
+              <div class="panel-body" *ngIf="orderDetails.avg_rating ==0">
+
+              <a  *ngFor="let item of starList; let i=index " (click)="setStar(i,orderDetails.package_id,orderList.id,orderList.customer_id)">  
+                <i class="fa" [ngClass]="{'fa-star-o':item,'fa-star':!item}"></i>   
+               </a>  
+              </div>
+              <div class="panel-body" *ngIf="orderDetails.avg_rating > 0">Rating : {{orderDetails.avg_rating}} </div>
               <hr>
             </div>
       

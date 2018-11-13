@@ -11,6 +11,7 @@ export class categoryComponent implements OnInit {
   subcatList = [];
   catid: any;
   cityid: any;
+  categoryName:any;
   constructor(
     private http: HttpClient,
     private router: Router,
@@ -53,10 +54,11 @@ export class categoryComponent implements OnInit {
   }
 
   getSubcategorybyLocation(id, cityid) {
+    
     this.categoryService.getsubCatbyLocation(id, cityid).subscribe(
       res => {
+        this.categoryName = res.category_name;
         this.subcatList = res.result;
-        console.log(this.subcatList);
       },
       error => {
         console.log(error);

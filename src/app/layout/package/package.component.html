@@ -50,11 +50,31 @@
                                 </a>
                             </li>
 
+<<<<<<< HEAD
+=======
+          <div class="widget categories bg-light">
+            <h4 class="widget-title">{{subCatName}}</h4>
+            <ul class="categories-list">
+              <li *ngFor="let service of serviceList">
+                <a (click)="gotoPackageListing(service.slug,subCatId)">
+                  <i class="lni-dinner"></i>
+                 {{service.name}}
+                </a>
+              </li>
+              
+>>>>>>> 609c0384db09fe603f6c424517ca986d81a5221f
 
                         </ul>
                     </div>
 
+<<<<<<< HEAD
                 </aside>
+=======
+                  </div>
+                </div>
+                 <!-- <p class="no-records" *ngIf="packageList.length < 1">No Records Found</p>  -->
+                  </div>
+>>>>>>> 609c0384db09fe603f6c424517ca986d81a5221f
             </div>
             <div class="col-lg-9 col-md-12 col-xs-12 page-content">
 

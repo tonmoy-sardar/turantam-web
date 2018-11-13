@@ -25,6 +25,7 @@ export class PackageComponent implements OnInit {
   customer_cart_data: any;
   imageBaseUrl: string;
   serviceId:any;
+  subCatId:any;
 
   constructor(
     private http: HttpClient,
@@ -55,10 +56,11 @@ export class PackageComponent implements OnInit {
     }
 
     this.serviceId = this.route.snapshot.params['serviceid'];
+    this.subCatId = this.route.snapshot.params['subcatid'];
   
 
-    this.getAllServiceList(this.route.snapshot.params['serviceid']);
-    this.getpackageList(this.route.snapshot.params['subcatid']);
+    this.getAllServiceList(this.route.snapshot.params['subcatid']);
+    this.getpackageList(this.route.snapshot.params['serviceid']);
   
 
   }
@@ -67,6 +69,7 @@ export class PackageComponent implements OnInit {
   getAllServiceList(subcatId) {
     this.packageService.getServiceList(subcatId).subscribe(
       res => {
+        console.log("Service List ==>",res);
         this.subCatName = res.subcategory_name;
         this.serviceList = res.result;
         console.log(this.serviceList);
@@ -83,8 +86,9 @@ export class PackageComponent implements OnInit {
   getpackageList(id) {
     this.packageService.getpackageList(id).subscribe(
       res => {
+        console.log("Package List ==>",res);
         this.packageList = res.result;
-       // console.log(this.packageList);
+       
         for (let i = 0; i < this.packageList.length; i++) {
           var index = this.customer_cart_data.findIndex(y => y.package_id == this.packageList[i]['id'] && y.customer_id == this.user_id);
 
@@ -218,7 +222,7 @@ export class PackageComponent implements OnInit {
 
   gotoPackageListing(serviceid,subcatid) {
     this.router.navigateByUrl('/package/' + serviceid + '/' + subcatid);
-    this.getpackageList(subcatid);
+    this.getpackageList(serviceid);
   }
 
   gotoPackagedetails() {
