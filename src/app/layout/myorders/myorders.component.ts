@@ -10,6 +10,8 @@ import { MyordersService } from '../../core/services/myorders.service';
 export class MyordersComponent implements OnInit {
   user_id :string;
   myOrderList =[];
+  //starList: boolean[] = [true,true,true,true,true];       // create a list which contains 
+  //rating:number;
   constructor(
     private router: Router,
     private route: ActivatedRoute,
@@ -36,6 +38,7 @@ export class MyordersComponent implements OnInit {
   }
 
   addRating(i) {
+    alert(i);
     console.log(i);
   }
 

@@ -93,11 +93,14 @@ export class HomeComponent implements OnInit {
         this.long = position.coords.longitude;
         this.getAddress();
       },
-        function (error) {
+        // function (error) {
+          error => {
           if (error.code == error.PERMISSION_DENIED)
             console.log("you denied me :-(");
           localStorage.setItem('myCurrentLocationId', "2");
-
+          this.toastr.error('Your location is Disabled. For now your default location will be Howrah you can change location from Dropdown ', '', {
+            timeOut: 6000,
+          });
 
         });
     }
@@ -142,6 +145,7 @@ export class HomeComponent implements OnInit {
     this.homeService.getcategoryList().subscribe(
       res => {
         this.categoryList = res.result;
+        console.log(this.categoryList);
       },
       error => {
         console.log(error);

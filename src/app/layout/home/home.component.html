@@ -49,7 +49,7 @@
            }  }" [items]="categoryList" [carouselClasses]="['owl-theme', 'row', 'sliding', 'categories-wrapper', 'owl-carousel','owl-prev','owl-next','banner-categories']">
 
                     <div class="item" *ngFor="let category of categoryList ; let i = index">
-                        <a href="JavaScript:Void(0);" [routerLink]="['/category', category.id]">
+                        <a href="JavaScript:Void(0);" [routerLink]="['/category', category.slug]">
                             <div class="category-icon-item">
                                 <div class="icon-box">
                                     <div class="icon">
