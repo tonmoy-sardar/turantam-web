@@ -96,3 +96,7 @@
 .dropdown-top:hover .dropdown-content {
     display: block;
 }
+
+.fixed-top {
+    z-index: 100;
+}
