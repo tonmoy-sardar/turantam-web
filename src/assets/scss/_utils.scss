@@ -272,35 +272,50 @@ button:focus {
     margin-top: 30px
 }
 
-a.back-to-top {
-    display: none;
-    position: fixed;
-    bottom: 18px;
-    right: 15px;
-    text-decoration: none
-}
 
-a.back-to-top i {
-    display: block;
-    font-size: 22px;
-    width: 40px;
-    height: 40px;
-    line-height: 40px;
+
+/*BackTop Button*/
+
+.back-top {
     color: #fff;
+    right: 20px;
+    font-size: 22px;
+    position: fixed;
+    z-index: 1600;
+    opacity: 0;
+    visibility: hidden;
+    bottom: 70px;
+    height: 40px;
+    width: 40px;
     background: #e40046;
     border-radius: 4px;
     text-align: center;
-    transition: all .2s ease-in-out;
-    -moz-transition: all .2s ease-in-out;
-    -webkit-transition: all .2s ease-in-out;
-    -o-transition: all .2s ease-in-out;
-    box-shadow: 0 0 4px rgba(0, 0, 0, .14), 0 4px 8px rgba(0, 0, 0, .28)
+    line-height: 38px;
+    -webkit-border-radius: 4px;
+    -webkit-transform: scale(0.5);
+    -ms-transform: scale(0.5);
+    -o-transform: scale(0.5);
+    transform: scale(0.5);
+    -webkit-transition: all .5s ease;
+    -o-transition: all .5s ease;
+    transition: all .5s ease;
 }
 
-a.back-to-top:hover,
-a.back-to-top:focus {
-    text-decoration: none
+.back-top-visible {
+    opacity: 1;
+    visibility: visible;
+    -webkit-transform: scale(1);
+    -ms-transform: scale(1);
+    -o-transform: scale(1);
+    transform: scale(1);
 }
+
+.back-top:hover,
+.back-top:focus {
+    color: #fff;
+   // background: #00abc9;
+}
+
 
 .owl-carousel .item {
     margin: 5px
@@ -739,6 +754,35 @@ a.back-to-top:focus {
 .slicknav_menu .slicknav_icon-bar {
     background: #e40046
 }
+
+.login-html .close {
+    background-color: #9e9a9a;
+    opacity: 1;
+    height: 25px;
+    width: 25px;
+    text-align: center;
+    border-radius: 50%;
+    color: #fff!important;
+    -webkit-transition: all .4s ease-out;
+    transition: all .4s ease-out;
+    -webkit-box-shadow: 0 4px 5px 1px rgba(0,0,0,.2);
+    box-shadow: 0 4px 5px 1px rgba(0,0,0,.2);
+}
+
+.sign-in-htm .close {
+    background-color: #9e9a9a;
+    opacity: 1;
+    height: 25px;
+    width: 25px;
+    text-align: center;
+    border-radius: 50%;
+    color: #fff!important;
+    -webkit-transition: all .4s ease-out;
+    transition: all .4s ease-out;
+    -webkit-box-shadow: 0 4px 5px 1px rgba(0,0,0,.2);
+    box-shadow: 0 4px 5px 1px rgba(0,0,0,.2);
+}
+
 
 @media(min-width:768px) and (max-width:991px) {
     #nav-main li a.nav-link {

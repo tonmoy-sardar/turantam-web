@@ -23,7 +23,8 @@
       ],
       "scripts": [
         "../node_modules/jquery/dist/jquery.js",
-    "../node_modules/owl.carousel/dist/owl.carousel.js"
+        "../node_modules/owl.carousel/dist/owl.carousel.js",
+        "assets/js/script.js"
       ],
       "environmentSource": "environments/environment.ts",
       "environments": {
@@ -58,7 +59,6 @@
   },
   "defaults": {
     "styleExt": "scss",
-    "component": {
-    }
+    "component": {}
   }
 }

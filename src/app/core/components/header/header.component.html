@@ -19,15 +19,16 @@
                         <a class="linkedin" href="#"><i class="fa fa-linkedin"></i></a>
                         <a class="google" href="#"><i class="fa fa-google-plus"></i></a>
                     </div>
-                    <div class="header-top-right float-right" *ngIf="!loggedIn">
-                        <a [routerLink]="['/cart']" class="header-top-button"><i class="fa fa-shopping-cart" aria-hidden="true"></i>  <span class="total-cart">{{totalCart}}</span></a>
+                    <!-- <div class="header-top-right float-right" *ngIf="!loggedIn">
+                        <a [routerLink]="['/cart']" class="header-top-button"><i class="fa fa-shopping-cart"
+                                aria-hidden="true"></i> <span class="total-cart">{{totalCart}}</span></a>
 
                         <a href="javascript:void(0)" (click)="login()" class="header-top-button"><i class="fa fa-user"
-        aria-hidden="true"></i> Log In</a>
+                                aria-hidden="true"></i> Log In</a>
                         <a href="javascript:void(0)" (click)="register()" class="header-top-button"><i class="fa fa-pencil"></i>
-      Register</a>
+                            Register</a>
 
-                    </div>
+                    </div> -->
 
                     <!-- <div class="header-top-right float-right" *ngIf="loggedIn">
 
@@ -46,17 +47,43 @@
 
 
                     </div> -->
-
-
-                    <div class="navbar-top">
-                        <a [routerLink]="['/cart']" class="header-top-button"><i class="fa fa-shopping-cart" aria-hidden="true"></i>  <span class="total-cart">{{totalCart}}</span></a>
+                    <div class="navbar-top" *ngIf="!loggedIn">
+                        <a [routerLink]="['/cart']" class="header-top-button"><i class="fa fa-shopping-cart"
+                                aria-hidden="true"></i> <span class="total-cart">{{totalCart}}</span></a>
                         <div class="dropdown-top">
-                            <button [routerLink]="['/myprofile']" class="dropbtn"><i class="fa fa-user" aria-hidden="true"></i> {{logedUser}}</button>
+                            <!-- <button [routerLink]="['/myprofile']" class="dropbtn"><i class="fa fa-user" aria-hidden="true"></i>
+                                    {{logedUser}}</button>
+                                <div class="dropdown-content">
+                                    <a class="dropdown-item" href="javascript:void(0)"><i class="fa fa-user" aria-hidden="true"></i>
+                                        My Profile</a>
+                                    <a class="dropdown-item" href="javascript:void(0)"><i class="fa fa-shopping-bag"
+                                            aria-hidden="true"></i> My Orders</a>
+                                    <a href="javascript:void(0)" (click)="logout()" class="header-top-button"><i class="fa fa-power-off"
+                                            aria-hidden="true"></i>
+                                        Log Out</a>
+                                </div> -->
+                        </div>
+                        <a href="javascript:void(0)" (click)="login()" class="header-top-button"><i class="fa fa-user"
+                                aria-hidden="true"></i> Log In</a>
+                        <a href="javascript:void(0)" (click)="register()" class="header-top-button"><i class="fa fa-pencil"></i>
+                            Register</a>
+
+                    </div>
+
+                    <div class="navbar-top" *ngIf="loggedIn">
+                        <a [routerLink]="['/cart']" class="header-top-button"><i class="fa fa-shopping-cart"
+                                aria-hidden="true"></i> <span class="total-cart">{{totalCart}}</span></a>
+                        <div class="dropdown-top">
+                            <button [routerLink]="['/myprofile']" class="dropbtn"><i class="fa fa-user" aria-hidden="true"></i>
+                                {{logedUser}}</button>
                             <div class="dropdown-content">
-                                <a class="dropdown-item" href="javascript:void(0)"><i class="fa fa-user" aria-hidden="true"></i> My Profile</a>
-                                <a class="dropdown-item" href="javascript:void(0)"><i class="fa fa-shopping-bag" aria-hidden="true"></i> My Orders</a>
-                                <a href="javascript:void(0)" (click)="logout()" class="header-top-button"><i class="fa fa-power-off" aria-hidden="true"></i>
-          Log Out</a>
+                                <a class="dropdown-item" href="javascript:void(0)" [routerLink]="['/myprofile']"><i class="fa fa-user" aria-hidden="true"></i>
+                                    My Profile</a>
+                                <a class="dropdown-item" href="javascript:void(0)" [routerLink]="['/myorders']"><i class="fa fa-shopping-bag"
+                                        aria-hidden="true" ></i> My Orders</a>
+                                <a href="javascript:void(0)" (click)="logout()" class="header-top-button"><i class="fa fa-power-off"
+                                        aria-hidden="true"></i>
+                                    Log Out</a>
                             </div>
                         </div>
 
@@ -72,70 +99,34 @@
         <div class="container">
 
             <div class="navbar-header">
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false" aria-label="Toggle navigation">
-  <span class="navbar-toggler-icon"></span>
-  <span class="lni-menu"></span>
-  <span class="lni-menu"></span>
-  <span class="lni-menu"></span>
-  </button>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-navbar"
+                    aria-controls="main-navbar" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                    <span class="lni-menu"></span>
+                    <span class="lni-menu"></span>
+                    <span class="lni-menu"></span>
+                </button>
                 <a [routerLink]="['/']" class="navbar-brand"><img src="assets/img/logo.png" alt=""></a>
             </div>
             <div class="collapse navbar-collapse" id="main-navbar">
                 <ul class="navbar-nav w-100 justify-content-end">
                     <li class="nav-item dropdown" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }">
-                        <a class="nav-link dropdown-toggle" [routerLink]="['/home']" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-  Home
-  </a>
-                        <!-- <div class="dropdown-menu">
-  <a class="dropdown-item"  href="javascript:void(0)">Home 1</a>
-  <a class="dropdown-item"  href="javascript:void(0)">Home 2</a>
-  </div> -->
+                        <a class="nav-link dropdown-toggle" [routerLink]="['/home']" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">
+                            Home
+                        </a>
+
                     </li>
                     <li class="nav-item ">
                         <a class="nav-link" [routerLink]="['/allcategory']" href="javascript:void(0)">
- Category
-  </a>
+                            Category
+                        </a>
                     </li>
-                    <!-- <li class="nav-item dropdown">
-  <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-  Listings
-  </a>
-  <div class="dropdown-menu">
-  <a class="dropdown-item"  href="javascript:void(0)">Ad Grid</a>
-  <a class="dropdown-item"  href="javascript:void(0)">Ad Listing</a>
-  <a class="dropdown-item"  href="javascript:void(0)">Listing Detail</a>
-  </div>
-  </li>
-  <li class="nav-item dropdown">
-  <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-  Pages
-  </a>
-  <div class="dropdown-menu">
-  <a class="dropdown-item"  href="javascript:void(0)">About Us</a>
-  <a class="dropdown-item"  href="javascript:void(0)">Services</a>
-  <a class="dropdown-item"  href="javascript:void(0)">Ads Details</a>
-  <a class="dropdown-item"  href="javascript:void(0)">Ads Post</a>
-  <a class="dropdown-item"  href="javascript:void(0)">Packages</a>
-  <a class="dropdown-item"  href="javascript:void(0)">Testimonial</a>
-  <a class="dropdown-item"  href="javascript:void(0)">FAQ</a>
-  <a class="dropdown-item"  href="javascript:void(0)">404</a>
-  </div>
-  </li>
-  <li class="nav-item dropdown">
-  <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-  Blog
-  </a>
-  <div class="dropdown-menu">
-  <a class="dropdown-item"  href="javascript:void(0)">Blog - Right Sidebar</a>
-  <a class="dropdown-item"  href="javascript:void(0)">Blog - Left Sidebar</a>
-  <a class="dropdown-item"  href="javascript:void(0)"> Blog full width </a>
-  <a class="dropdown-item"  href="javascript:void(0)"> Blog Details</a>
-  </div>
-  </li> -->
+
                     <li class="nav-item">
                         <a class="nav-link" [routerLink]="['/contactus']">
-  Contact
-  </a>
+                            Contact
+                        </a>
                     </li>
                 </ul>
                 <!--
@@ -149,8 +140,8 @@
         <ul class="mobile-menu">
             <li>
                 <a class="active" href="#">
-  Home
-  </a>
+                    Home
+                </a>
                 <ul class="dropdown">
                     <li><a class="active" href="javascript:void(0)">Home 1</a></li>
                     <li><a href="javascript:void(0)">Home 2</a></li>
@@ -161,8 +152,8 @@
             </li>
             <li>
                 <a href="#">
-  Listings
-  </a>
+                    Listings
+                </a>
                 <ul class="dropdown">
                     <li><a href="javascript:void(0)">Ad Grid</a></li>
                     <li><a href="javascript:void(0)">Ad Listing</a></li>

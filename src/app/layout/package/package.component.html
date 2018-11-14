@@ -1,19 +1,20 @@
-<div id="hero-area">
-    <div class="overlay"></div>
+<div class="page-header" style="background: url(assets/img/hero-area.jpg); background:cover ">
     <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-12 col-lg-9 col-xs-12 text-center">
-                <div class="contents">
-                    <h1 class="head-title">Welcome to The Largest <span class="year">Marketplace</span></h1>
-                    <p>Buy and sell everything from used cars to mobile phones and computers, or search for property, jobs and more
-                    </p>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="breadcrumb-wrapper">
+                    <h2 class="product-title">Packages</h2>
+                    <ol class="breadcrumb">
+                        <li><a href="#">Home /</a></li>
 
+                        <li>Services /</li>
+                        <li class="current">{{subCatName}}</li>
+                    </ol>
                 </div>
             </div>
         </div>
     </div>
 </div>
-
 
 
 
@@ -26,7 +27,8 @@
                         <nav aria-label="breadcrumb">
                             <ol>
                                 <li class="breadcrumb-item"><a href="#">Home</a></li>
-                                <li class="breadcrumb-item active" aria-current="page">Beauty & Spa
+                                <li class="breadcrumb-item"><a href="#">Services</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">{{subCatName}}
                                 </li>
                             </ol>
                         </nav>
