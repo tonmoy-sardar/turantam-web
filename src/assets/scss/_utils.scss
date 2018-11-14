@@ -273,7 +273,6 @@ button:focus {
 }
 
 
-
 /*BackTop Button*/
 
 .back-top {
@@ -313,9 +312,8 @@ button:focus {
 .back-top:hover,
 .back-top:focus {
     color: #fff;
-   // background: #00abc9;
+    // background: #00abc9;
 }
-
 
 .owl-carousel .item {
     margin: 5px
@@ -595,6 +593,26 @@ button:focus {
 // .fixed-top {
 //     top: 42px
 // }
+.login-html {
+    position: relative;
+}
+
+.login-html h1 {
+    text-align: center;
+    font-size: 25px;
+    color: #e40046;
+}
+
+.login-html .close {
+    background-color: #e40046 !important;
+}
+
+.login-html a {
+    font-weight: bold;
+    color: #e40046 !important;
+    cursor: pointer;
+}
+
 .top-nav-collapse {
     background: #fff;
     // z-index: 999999;
@@ -765,8 +783,8 @@ button:focus {
     color: #fff!important;
     -webkit-transition: all .4s ease-out;
     transition: all .4s ease-out;
-    -webkit-box-shadow: 0 4px 5px 1px rgba(0,0,0,.2);
-    box-shadow: 0 4px 5px 1px rgba(0,0,0,.2);
+    -webkit-box-shadow: 0 4px 5px 1px rgba(0, 0, 0, .2);
+    box-shadow: 0 4px 5px 1px rgba(0, 0, 0, .2);
 }
 
 .sign-in-htm .close {
@@ -779,10 +797,9 @@ button:focus {
     color: #fff!important;
     -webkit-transition: all .4s ease-out;
     transition: all .4s ease-out;
-    -webkit-box-shadow: 0 4px 5px 1px rgba(0,0,0,.2);
-    box-shadow: 0 4px 5px 1px rgba(0,0,0,.2);
+    -webkit-box-shadow: 0 4px 5px 1px rgba(0, 0, 0, .2);
+    box-shadow: 0 4px 5px 1px rgba(0, 0, 0, .2);
 }
-
 
 @media(min-width:768px) and (max-width:991px) {
     #nav-main li a.nav-link {
