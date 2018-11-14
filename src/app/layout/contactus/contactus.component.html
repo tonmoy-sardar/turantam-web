@@ -70,7 +70,7 @@
                             </div>
                         </div>
                         <div class="col-md-12">
-                            <button type="submit" id="submit" class="btn btn-primary">Submit Now</button>
+                            <button [disabled]="!isStatus" type="submit" id="submit" class="btn btn-primary">Submit Now</button>
                             <div id="msgSubmit" class="h3 text-center hidden"></div>
                             <div class="clearfix"></div>
                         </div>

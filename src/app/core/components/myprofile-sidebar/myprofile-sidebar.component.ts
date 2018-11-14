@@ -37,6 +37,7 @@ export class MyprofileSidebarComponent implements OnInit {
     this.myprofileService.getProfile(id).subscribe(
       res => {
         this.profileDetails = res['result'];
+        console.log(this.profileDetails);
       },
       error => {
         console.log(error);

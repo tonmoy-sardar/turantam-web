@@ -12,6 +12,7 @@ import { ContactusService } from "../../core/services/contactus.service";
 })
 export class ContactusComponent implements OnInit {
   contactForm: FormGroup;
+  isStatus:boolean;
   constructor(
     private toastr: ToastrService,
     private formBuilder: FormBuilder,
@@ -19,6 +20,7 @@ export class ContactusComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.isStatus = true;
     this.contactForm = this.formBuilder.group({
       name: ["", Validators.required],
       email: ["",
@@ -55,14 +57,10 @@ export class ContactusComponent implements OnInit {
   sendMessage() {
     console.log(this.contactForm);
      if (this.contactForm.valid) {
-      // this.contactusService.sendMessageStatus(true);  
-      // this.toastr.success('Message Send Successfully', '', {
-      //   timeOut: 3000,
-      // });
-      // this.contactForm.reset();
+      this.isStatus = false;
       this.contactusService.sendMessage(this.contactForm.value).subscribe(
         res => {
-           console.log(res)
+          this.isStatus = true;
           this.toastr.success(res.result, '', {
             timeOut: 3000,
           });

@@ -92,6 +92,10 @@ export class LoginComponent implements OnInit {
 
   }
 
+  modalClose() {
+    this.dialogRef.close();
+  }
+
   toggle() {
     this.formType = 1;
     this.toggle_key = !this.toggle_key;

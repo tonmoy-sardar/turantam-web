@@ -47,7 +47,7 @@
                         <h4 class="widget-title">{{subCatName}}</h4>
                         <ul class="categories-list">
                             <li *ngFor="let service of serviceList">
-                                <a (click)="gotoPackageListing(service.slug,subCatId)">
+                                <a href="javascript:void(0)" (click)="gotoPackageListing(service.slug,subCatId)">
                                     <i class="lni-dinner"></i> {{service.name}}
                                 </a>
                             </li>
@@ -69,7 +69,9 @@
                                             <div class="icon">
                                                 <span><i class="fa fa-star"></i> {{package.avg_rating}}</span>
                                             </div>
-                                            <a [routerLink]="['/package/details', package.slug]"><img class="img-fluid w-100" [src]="package.image_small != null && imageBaseUrl+ package.image_small || 'assets/img/no-img.png'" alt=""></a>
+                                            <a [routerLink]="['/package/details', package.slug]"><img class="img-fluid w-100"
+                                                    [src]="package.image_small != null && imageBaseUrl+ package.image_small || 'assets/img/no-img.png'"
+                                                    alt=""></a>
                                         </figure>
                                         <div class="feature-content w-100">
 
@@ -79,11 +81,15 @@
                                             <div class="listing-bottom">
                                                 <h3 class="price float-left">₹ {{package.price}}</h3>
                                                 <!-- <p (click)="addtoCart(package)" *ngIf="!package.isCart">Add to Cart</p> -->
-                                                <div (click)="addtoCart(package)" *ngIf="!package.isCart" class="add-btn"><span class="add-text">Add</span><span class="plus">+</span></div>
-                                                <form *ngIf="package.isCart" class="plus-minas float-right" id='myform' method='POST' action='#'>
-                                                    <input (click)="decrement(package)" type='button' value='-' class='qtyminus' field='quantity' />
+                                                <div (click)="addtoCart(package)" *ngIf="!package.isCart" class="add-btn"><span
+                                                        class="add-text">Add</span><span class="plus">+</span></div>
+                                                <form *ngIf="package.isCart" class="plus-minas float-right" id='myform'
+                                                    method='POST' action='#'>
+                                                    <input (click)="decrement(package)" type='button' value='-' class='qtyminus'
+                                                        field='quantity' />
                                                     <input type='text' name='quantity' value={{package.quantity}} class='qty' />
-                                                    <input (click)="increment(package)" type='button' value='+' class='qtyplus' field='quantity' />
+                                                    <input (click)="increment(package)" type='button' value='+' class='qtyplus'
+                                                        field='quantity' />
                                                 </form>
 
                                             </div>
@@ -91,25 +97,12 @@
 
                                     </div>
                                 </div>
-                                <!-- <p class="no-records" *ngIf="packageList.length <1">Data Not Found</p> -->
+                                <p class="no-records" *ngIf="packageList.length < 1">No Records Found</p> 
                             </div>
                         </div>
 
                     </div>
                 </div>
-
-
-                <!-- <div class="pagination-bar"> 
-          <nav>
-            <ul class="pagination justify-content-center">
-              <li class="page-item"><a class="page-link active" href="#">1</a></li>
-              <li class="page-item"><a class="page-link" href="#">2</a></li>
-              <li class="page-item"><a class="page-link" href="#">3</a></li>
-              <li class="page-item"><a class="page-link" href="#">Next</a></li>
-            </ul>
-          </nav>
-        </div> -->
-
             </div>
         </div>
     </div>

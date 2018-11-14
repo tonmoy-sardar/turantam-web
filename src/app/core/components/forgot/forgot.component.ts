@@ -52,6 +52,10 @@ export class ForgotComponent implements OnInit {
     });
   }
 
+  modalClose() {
+    this.dialogRef.close();
+  }
+
   toggle() {
     this.toggle_key = !this.toggle_key;
     if (this.toggle_key) {

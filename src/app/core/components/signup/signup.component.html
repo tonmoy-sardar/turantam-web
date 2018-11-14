@@ -1,5 +1,6 @@
 <div class="login-wrap">
     <div class="login-html">
+        <a class="close" (click)="modalClose()">×</a>
       <h1>{{title}}</h1>
       <div class="login-form">
         <div class="sign-in-htm">
@@ -89,15 +90,7 @@
               <button type="submit" class="btn btn-block"> Sign Up </button>
             </div>
           </form>
-          <!-- <button type="buton" class="btn btn-block" (click)="signInWithFB()">
-            <i class="fa fa-facebook" aria-hidden="true"></i>
-            Login with Facebook
-          </button>
-          <button type="button" class="btn btn-block" (click)="signInWithGoogle()">
-            <i class="fa fa-google" aria-hidden="true"></i>
-            Login with Google
-          </button> -->
-          <a (click)="toggle()">{{toggle_btn}}</a>
+          <a (click)="toggle()" href="javascript:void(0)">{{toggle_btn}}</a>
         </div>
       </div>
     </div>
