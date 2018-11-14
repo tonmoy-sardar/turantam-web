@@ -15,7 +15,7 @@ import { environment } from '../../../../environments/environment';
 })
 export class MyprofileSidebarComponent implements OnInit {
   loggedIn: boolean;
-  profileDetails =[];
+  profileDetails :any;
   user_id:string;
   imageBaseUrl:string;
   constructor(
