@@ -6,8 +6,10 @@
                     <h2 class="product-title">Details</h2>
                     <ol class="breadcrumb">
                         <li><a href="#">Home /</a></li>
-                        <li>Beauty & Spa /</li>
-                        <li class="current">Wax & Groom</li>
+                        <li>Category / </li>
+                        <li >{{packagedetails.service_category_name}} / </li>
+                        <li class="current">{{packagedetails.name}} </li>
+                        
                     </ol>
                 </div>
             </div>
@@ -95,8 +97,8 @@
                                     <a href="#"><img src="assets/img/review-star.png" alt=""></a>
                                 </div>
                                 <div class="agent-details">
-                                    <h3><a href="#">4.5</a></h3>
-                                    <span><i class="lni-phone-handset"></i>based on 193 reviews</span>
+                                    <h3><a href="#">{{packagedetails.avg_rating}}</a></h3>
+                                    <!-- <span><i class="lni-phone-handset"></i>based on 193 reviews</span> -->
                                 </div>
                             </div>
                             <hr>
@@ -119,11 +121,11 @@
                     </div>
 
                     <div class="widget bg-light">
-                        <h4 class="widget-title">More Ads and Catagory</h4>
+                        <h4 class="widget-title">More Categories</h4>
                         <ul class="posts-list">
                             <li *ngFor="let recentservice of recentserviceList ; let i = index">
                                 <div class="widget-thumb">
-                                    <a [routerLink]="['/category', recentservice.id]"><img [src]="recentservice.image_small != '' && imageBaseUrl+ recentservice.image_small || 'assets/img/no-img.png'"
+                                    <a [routerLink]="['/category', recentservice.slug]"><img [src]="recentservice.image_small != '' && imageBaseUrl+ recentservice.image_small || 'assets/img/no-img.png'"
                                             alt=""></a>
                                 </div>
                                 <div class="widget-content">

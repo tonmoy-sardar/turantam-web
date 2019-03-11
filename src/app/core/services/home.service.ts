@@ -31,4 +31,8 @@ export class HomeService {
     return this.http.get(environment.apiEndpoint + 'categoryid/'+data)
   }
 
+  getCatList(data) {
+    return this.http.get(environment.apiEndpoint + 'categorylistbyname?cat_name='+data)
+  }
+
 }

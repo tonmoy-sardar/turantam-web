@@ -4,5 +4,6 @@ export const environment = {
   //FacebookAppId: "299801575273",
   apiEndpoint: "http://shyamfuture.com/turantam/api/",
   imageBaseUrl: "http://shyamfuture.com/turantam/uploads/",
-  paytmEnable :0 // 0 : not enable , 1: enable
+  paytmEnable :0, // 0 : not enable , 1: enable
+  defaultLocation :"Howrah"
 };

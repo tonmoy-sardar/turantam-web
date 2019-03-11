@@ -15,7 +15,7 @@ import { environment } from '../../../../environments/environment';
 })
 export class MyprofileSidebarComponent implements OnInit {
   loggedIn: boolean;
-  profileDetails:any;
+  profileDetails :any;
   user_id:string;
   imageBaseUrl:string;
   constructor(
@@ -48,6 +48,7 @@ export class MyprofileSidebarComponent implements OnInit {
   logout() {
     this.loginService.logOutStatus(true);
     localStorage.clear();
+    sessionStorage.clear();
     this.loggedIn = false;
     this.router.navigate(['/']);
 

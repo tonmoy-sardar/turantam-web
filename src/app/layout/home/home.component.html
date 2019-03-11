@@ -5,31 +5,31 @@
             <div class="col-md-12 col-lg-9 col-xs-12 text-center">
                 <div class="contents">
                     <h1 class="head-title">Welcome to The Largest <span class="year">Marketplace</span></h1>
-                    <p>Buy and sell everything from used cars to mobile phones and computers, or search for property,
-                        jobs and more</p>
+                    <p>Buy and sell everything from used cars to mobile phones and computers, or search for property, jobs and more</p>
                     <div class="search-bar">
                         <div class="search-inner">
                             <form class="search-form">
                                 <div class="form-group inputwithicon">
                                     <div class="select">
-                                        <!-- <select (change)="gotoLocation($event)">
-                                            <option value="none">Locations</option>
-                                            <option value="1">Kolkata</option>
-                                            <option value="2">Howrah</option>
-                                        </select> -->
+
                                         <select class="form-control" (change)="gotoLocation($event.target.value)" name="location">
                                                 <option value="">Location</option>
-                                                <option value="{{locationlist.id}}" *ngFor="let locationlist of locationList">{{locationlist.name}}</option>
+                                                <option [selected]="locationId == locationlist.id" value="{{locationlist.id}}"  *ngFor="let locationlist of locationList">{{locationlist.name}}</option>
                                               </select>
                                     </div>
                                     <i class="fa fa-map-marker"></i>
                                 </div>
 
                                 <div class="form-group">
-                                    <input type="text" [(ngModel)]="catname" name="customword" class="form-control" placeholder="What are you looking for?">
+                                    <input type="hidden" [(ngModel)]="catname" name="customword" class="form-control" placeholder="What are you looking for?">
+                                    <!-- <input type="text" [(ngModel)]="catname" name="customword" class="form-control" placeholder="What are you looking for?"> -->
+                                    <input type="text" matInput (input)="onCategoryChanged($event.target.value)" [matAutocomplete]="auto" class="form-control" placeholder="What are you looking for?">
+                                    <mat-autocomplete #auto="matAutocomplete">
+                                        <mat-option *ngFor="let catlist of catList" [value]="catlist.name" (click)="selectCategoty(catlist)">{{ catlist.name }}</mat-option>
+                                    </mat-autocomplete>
                                 </div>
 
-                                <button class="btn btn-common"(click)="gotoSearch(locationid,catname)" type="button"><i class="fa fa-search"></i> Search Now</button>
+                                <button class="btn btn-common" (click)="gotoSearch(locationId,catname)" type="button"><i class="fa fa-search"></i> Search Now</button>
                             </form>
                         </div>
                     </div>
@@ -58,7 +58,7 @@
                                 <div class="icon-box">
                                     <div class="icon">
                                         <img [src]="category.image_small != '' && imageBaseUrl+ category.image_small || 'assets/img/no-image.png'" alt="">
-                                        
+
                                     </div>
                                     <h4>{{category.name}}</h4>
                                 </div>
@@ -76,27 +76,23 @@
 <section class="featured section-padding">
     <div class="container">
         <h1 class="section-title">Latest Services</h1>
-        
+
         <div class="row">
             <div class="col-xs-6 col-sm-6 col-md-6 col-lg-4" *ngFor="let services of recentServices ; let i = index">
-                <div class="featured-box">
+                <div class="featured-box latest-services">
                     <figure>
-
-                        <a href="#"><img class="img-fluid" [src]="services.image != null && imageBaseUrl+ services.image || 'assets/img/no-img.png'" alt=""></a>
+                        <a href="javaScript:Void(0)" (click)="gotoPackageListing(services.slug,services.category_slug)"><img class="img-fluid w-100" [src]="services.image != null && imageBaseUrl+ services.image || 'assets/img/no-img.png'" alt=""></a>
                     </figure>
-                    <div class="feature-content">
-                        <!-- <div class="product">
-                            <a href="#">Electronic > </a>
-                            <a href="#">Cameras</a>
-                        </div> -->
-                        <h4><a href="ads-details.html">{{services.name}}</a></h4>
+                    <div class="feature-content d-flex align-items-center w-100 justify-content-center">
+
+                        <h4><a href="javaScript:Void(0)">{{services.name}}</a></h4>
 
                         <p class="dsc">{{services.description}}</p>
 
                     </div>
                 </div>
             </div>
-          
+
         </div>
     </div>
 </section>
@@ -204,9 +200,7 @@
                         </div>
                         <div class="testimonial-item">
                             <div class="content">
-                                <p class="description">Eiusmod tempor incidiunt labore velit dolore magna aliqu sed
-                                    eniminim veniam quis nostrud exercition eullamco laborisaa, Eiusmod tempor
-                                    incidiunt labore velit dolore magna.</p>
+                                <p class="description">Eiusmod tempor incidiunt labore velit dolore magna aliqu sed eniminim veniam quis nostrud exercition eullamco laborisaa, Eiusmod tempor incidiunt labore velit dolore magna.</p>
                                 <div class="info-text">
                                     <h2><a href="#">Josh Rossi</a></h2>
                                     <h4><a href="#">CEO of Fiverr</a></h4>
@@ -221,9 +215,7 @@
                             </div>
                             <div class="testimonial-item">
                                 <div class="content">
-                                    <p class="description">Eiusmod tempor incidiunt labore velit dolore magna aliqu sed
-                                        eniminim veniam quis nostrud exercition eullamco laborisaa, Eiusmod tempor
-                                        incidiunt labore velit dolore magna.</p>
+                                    <p class="description">Eiusmod tempor incidiunt labore velit dolore magna aliqu sed eniminim veniam quis nostrud exercition eullamco laborisaa, Eiusmod tempor incidiunt labore velit dolore magna.</p>
                                     <div class="info-text">
                                         <h2><a href="#">Jessica</a></h2>
                                         <h4><a href="#">CEO of Dropbox</a></h4>
@@ -239,9 +231,7 @@
                             </div>
                             <div class="testimonial-item">
                                 <div class="content">
-                                    <p class="description">Eiusmod tempor incidiunt labore velit dolore magna aliqu sed
-                                        eniminim veniam quis nostrud exercition eullamco laborisaa, Eiusmod tempor
-                                        incidiunt labore velit dolore magna.</p>
+                                    <p class="description">Eiusmod tempor incidiunt labore velit dolore magna aliqu sed eniminim veniam quis nostrud exercition eullamco laborisaa, Eiusmod tempor incidiunt labore velit dolore magna.</p>
                                     <div class="info-text">
                                         <h2><a href="#">Johnny Zeigler</a></h2>
                                         <h4><a href="#">CEO of Fiverr</a></h4>
@@ -257,9 +247,7 @@
                             </div>
                             <div class="testimonial-item">
                                 <div class="content">
-                                    <p class="description">Eiusmod tempor incidiunt labore velit dolore magna aliqu sed
-                                        eniminim veniam quis nostrud exercition eullamco laborisaa, Eiusmod tempor
-                                        incidiunt labore velit dolore magna.</p>
+                                    <p class="description">Eiusmod tempor incidiunt labore velit dolore magna aliqu sed eniminim veniam quis nostrud exercition eullamco laborisaa, Eiusmod tempor incidiunt labore velit dolore magna.</p>
                                     <div class="info-text">
                                         <h2><a href="#">Josh Rossi</a></h2>
                                         <h4><a href="#">CEO of Fiverr</a></h4>
@@ -275,9 +263,7 @@
                             </div>
                             <div class="testimonial-item">
                                 <div class="content">
-                                    <p class="description">Eiusmod tempor incidiunt labore velit dolore magna aliqu sed
-                                        eniminim veniam quis nostrud exercition eullamco laborisaa, Eiusmod tempor
-                                        incidiunt labore velit dolore magna.</p>
+                                    <p class="description">Eiusmod tempor incidiunt labore velit dolore magna aliqu sed eniminim veniam quis nostrud exercition eullamco laborisaa, Eiusmod tempor incidiunt labore velit dolore magna.</p>
                                     <div class="info-text">
                                         <h2><a href="#">Priyanka</a></h2>
                                         <h4><a href="#">CEO of Dropbox</a></h4>

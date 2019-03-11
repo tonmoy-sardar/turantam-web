@@ -26,9 +26,13 @@ export class HomeComponent implements OnInit {
   locationList = [];
   recentServices: any;
   imageBaseUrl: string;
-  locationid: any;
+  locationId: any;
   catid: any;
-  catname:string;
+  catname: string;
+  defaultLocation: any;
+  defaultLocationId: any;
+
+  catList = [];
   constructor(
     private http: HttpClient,
     private router: Router,
@@ -37,108 +41,62 @@ export class HomeComponent implements OnInit {
     private googlemapsService: GooglemapsService,
     private homeService: HomeService
   ) {
-    this.catname ="";
-   }
+    this.catname = "";
+  }
 
   ngOnInit() {
+    this.defaultLocation = environment.defaultLocation;
     this.imageBaseUrl = environment.imageBaseUrl;
-    this.getLocation();
+    //  if(localStorage.getItem('myCurrentLocationId')) {
+    //   this.locationId = localStorage.getItem('myCurrentLocationId');
+    //  }
+    //  else {
+    //   this.locationId = 2;
+    //   this.getLocation();
+    //  }
+
     this.getCategoryList();
     this.getLocationApi();
     this.recentService();
+   // this.getLocation();
+    //this.locationId = 2;
+   // alert(this.defaultLocationId);
 
   }
 
-  // gotoLocation(event: any) {
-  //   this.location = event.target.value;
-  //   localStorage.setItem('location', this.location);
-  //   this.router.navigateByUrl('/home/' + this.location);
-
-  // }
 
   gotoLocation(id) {
-    this.locationid = id;
+    this.locationId = id;
+    localStorage.setItem('myCurrentLocationId', this.locationId);
   }
 
   gotoSearch(cityid, catname) {
-    this.homeService.getcategoryName(catname).subscribe(
-      res => {
-        if (res['result'] != null) {
-          this.catid = res['result']['id'];
-          this.router.navigateByUrl('/category/' + this.catid + '/' + cityid);
-        }
-        else {
-         // alert("Wrong Category");
-         this.toastr.error('Wrong Category', '', {
-          timeOut: 3000,
-        });
-        }
-      },
-      error => {
-        console.log(error);
-      }
-    );
-  }
-
-  getLocation() {
-
-    // if (navigator.geolocation) {
-    //   navigator.geolocation.getCurrentPosition(this.showPosition,this.showError);
-    // } else {
-      
-    // }
-    
-    if (navigator.geolocation) {
-      
-      navigator.geolocation.getCurrentPosition(position => {
-        this.location = position.coords;
-        this.lat = position.coords.latitude;
-        this.long = position.coords.longitude;
-        this.getAddress();
-      });
+    if (catname == '') {
+      this.router.navigateByUrl('/allcategory');
     }
-   
+    else {
+      this.router.navigateByUrl('/category/' + catname);
+      // this.homeService.getcategoryName(catname).subscribe(
+      //   res => {
+      //     if (res['result'] != null) {
+      //       this.catid = res['result']['id'];
+      //      // this.router.navigateByUrl('/category/' + this.catid + '/' + cityid);
+      //      this.router.navigateByUrl('/category/' + this.catid);
+      //     }
+      //     else {
+      //       this.toastr.error('Wrong Category', '', {
+      //         timeOut: 3000,
+      //       });
+      //     }
+      //   },
+      //   error => {
+      //     console.log(error);
+      //   }
+      // );
+    }
+
   }
 
-  // showPosition(position) {
-  //  // if (navigator.geolocation) {
-  //     navigator.geolocation.getCurrentPosition(position => {
-  //      // this.location = position.coords;
-  //      console.log(position.coords.latitude);
-  //      console.log(position.coords.longitude);
-  //       this.lat = position.coords.latitude;
-  //       this.long = position.coords.longitude;
-        
-  //      // this.getAddress();
-  //     });
-  //  // }   
-  // }
-  
-  // showError(error) {
-  //   console.log("Location Not Found !!!");
-  // }
-
-  getAddress() {
-    this.googlemapsService.getCurrentLocation(this.lat, this.long).subscribe(
-      res => {
-        this.location = res.address;
-        console.log(this.location);
-        this.homeService.getlocationName(this.location.toString().trim()).subscribe(
-          res => {
-            
-            this.locationid = res['result'].id;
-            console.log(this.locationid);
-          },
-          error => {
-            console.log(error);
-          }
-        );
-      },
-      error => {
-        console.log(error);
-      }
-    );
-  }
 
   getCategoryList() {
     this.homeService.getcategoryList().subscribe(
@@ -155,7 +113,81 @@ export class HomeComponent implements OnInit {
   getLocationApi() {
     this.homeService.getlocationapi().subscribe(
       res => {
+        console.log("Location List", res);
         this.locationList = res['result'];
+        // console.log(this.locationList);
+        for (var i = 0; i < this.locationList.length; i++) {
+          if (this.locationList[i].name == this.defaultLocation) {
+            this.defaultLocationId = this.locationList[i].id;
+          }
+        }
+
+        if (localStorage.getItem('myCurrentLocationId')) {
+          this.locationId = localStorage.getItem('myCurrentLocationId');
+        }
+        else {
+          this.locationId =this.defaultLocationId;
+          this.getLocation();
+        }
+
+      //  this.getLocation();
+      },
+      error => {
+        console.log(error);
+      }
+    );
+  }
+
+  getLocation() {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(position => {
+        this.location = position.coords;
+        this.lat = position.coords.latitude;
+        this.long = position.coords.longitude;
+        this.getAddress();
+      },
+        // function (error) {
+        error => {
+          if (error.code == error.PERMISSION_DENIED)
+            console.log("you denied me :-(");
+           // alert(this.defaultLocationId);
+           this.locationId = this.defaultLocationId;
+          localStorage.setItem('myCurrentLocationId', this.defaultLocationId);
+          this.toastr.error('Your location is Disabled. For now your default location will be Howrah you can change location from Dropdown ', '', {
+            timeOut: 6000,
+          });
+
+        });
+    }
+  }
+
+  getAddress() {
+    this.googlemapsService.getCurrentLocation(this.lat, this.long).subscribe(
+      res => {
+        this.location = res.address;
+        // console.log(this.location);
+        this.homeService.getlocationName(this.location.toString().trim()).subscribe(
+          res => {
+            if (res['result'] == null) {
+              this.toastr.error('Turantam Services is not available in your current location. You can change the Location From Dropdown', '', {
+                timeOut: 3000,
+              });
+            //  alert(this.defaultLocationId);
+              localStorage.setItem('myCurrentLocationId',this.defaultLocationId);
+              this.locationId = localStorage.getItem('myCurrentLocationId');
+            }
+            else {
+              // console.log(res['result'])
+              localStorage.setItem('myCurrentLocationId', res['result'].id);
+              this.locationId = localStorage.getItem('myCurrentLocationId');
+              //  console.log(this.locationId);
+            }
+
+          },
+          error => {
+            console.log(error);
+          }
+        );
       },
       error => {
         console.log(error);
@@ -166,7 +198,7 @@ export class HomeComponent implements OnInit {
   recentService() {
     this.homeService.recentService().subscribe(
       res => {
-
+        console.log("Home Page Services==>", res);
         this.recentServices = res['result'];
       },
       error => {
@@ -175,8 +207,27 @@ export class HomeComponent implements OnInit {
     );
   }
 
+  gotoPackageListing(serviceid, subcatid) {
+    this.router.navigateByUrl('/package/' + serviceid + '/' + subcatid);
+  }
 
+  onCategoryChanged(searchStr: string): void {
 
+    this.homeService.getCatList(searchStr).subscribe(
+      res => {
 
+        console.log("Cat List==>", res);
+        this.catList = res['result'];
+      },
+      error => {
+        console.log(error);
+      }
+    );
+  }
+
+  selectCategoty(catlist) {
+    console.log(catlist);
+    this.catname = catlist.slug;
+  }
 
 }

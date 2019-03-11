@@ -60,12 +60,14 @@ export class PackagedetailsComponent implements OnInit {
       this.customer_cart_data = [];
     }
 
+    this.recentServices();
+
   }
 
   packageDetails(id) {
     this.packageService.getpackageDetails(id).subscribe(
       res => {
-        this.packagedetails = res['result'];
+        this.packagedetails = res.result;
         console.log(this.packagedetails);
         console.log(this.packagedetails.iscart);
         this.packageEntity = res['result'].package_entity;
@@ -174,6 +176,20 @@ export class PackagedetailsComponent implements OnInit {
 
     sessionStorage.setItem("cart", JSON.stringify(this.customer_cart_data));
   }
+
+
+  recentServices() {
+    this.packageService.recentservice().subscribe(
+      res => {
+       console.log(res);
+       this.recentserviceList = res.result;
+      },
+      error => {
+        console.log(error);
+      }
+    );
+  }
+
 
 
 

@@ -10,6 +10,11 @@ export class PackageService {
   constructor(
     private http: HttpClient
   ) { }
+
+  getServiceList(data): Observable<any> {
+    return this.http.get(environment.apiEndpoint + 'serviceslistbysubcatid/'+data)
+  }
+
   getpackageList(data): Observable<any> {
     return this.http.get(environment.apiEndpoint + 'packageslistbyserviceid/'+data)
   }
