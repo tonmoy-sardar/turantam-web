@@ -75,11 +75,11 @@ export class AddAddressComponent implements OnInit {
 
   addAdress() {
     this.addressForm.value.customer_id = this.user_id;
-    console.log(this.addressForm.value);
+    //console.log(this.addressForm.value);
     if (this.addressForm.valid) {
       this.addAddressService.addcustomerAddress(this.addressForm.value).subscribe(
         res => {
-          console.log(res);
+          //console.log(res);
           this.addAddressService.addressStatus(true);
           this.toastr.success('Address Added successfully', '', {
             timeOut: 3000,

@@ -53,10 +53,6 @@
                     <label class="control-label">Email:</label>
                     <div>{{profileDetails.email}}</div>  
                   </div>
-
-                
-              
-
                 </div>
 
 
@@ -105,6 +101,7 @@
 
                       <!-- <input id="tg-photogallery" class="tg-fileinput"  type="file" name="profile_image" formControlName="profile_image" (change)="profileImageChange($event.target.files)"> -->
                      <input id="tg-photogallery" class="tg-fileinput" (change)="onFileChange($event)"  type="file" name="profile_image" formControlName="profile_image">
+                     {{profileImage.name}}
                     </label>
 
                   </div> 

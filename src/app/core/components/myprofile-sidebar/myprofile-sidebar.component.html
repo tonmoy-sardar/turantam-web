@@ -4,7 +4,12 @@
             <div class="user">
                 <figure>
                       
-                    <a ><img class="img-fluid sidebar-profile-image" [src]="profileDetails.profile_image != '' && imageBaseUrl+ profileDetails.profile_image || 'assets/img/no-img.png'" alt=""></a>
+                    <a >
+                        <!-- <img class="img-fluid sidebar-profile-image" [src]="profileDetails.profile_image != '' && imageBaseUrl+ profileDetails.profile_image || 'assets/img/no-img.png'" alt=""> -->
+                        <img class="img-fluid sidebar-profile-image"  [src]="profileDetails.profile_image  != ''? imageBaseUrl+ profileDetails.profile_image  : 'assets/img/no-img.png'" alt="">
+                       
+                    
+                    </a>
                    
                   
                 </figure>

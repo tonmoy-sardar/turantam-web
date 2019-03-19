@@ -22,6 +22,9 @@ export class HomeService {
   recentService() {
     return this.http.get(environment.apiEndpoint + 'recentserviceslist/')
   }
+  testimonialService() {
+    return this.http.get(environment.apiEndpoint + 'testimoniallist/')
+  }
 
   getlocationName(data) {
     return this.http.get(environment.apiEndpoint + 'locationid/'+data)
@@ -34,5 +37,10 @@ export class HomeService {
   getCatList(data) {
     return this.http.get(environment.apiEndpoint + 'categorylistbyname?cat_name='+data)
   }
-
+  getCms(slug){
+    return this.http.get(environment.apiEndpoint + 'pagedetailsbyslug/'+slug)
+  }
+  getCmsPageList(){
+    return this.http.get(environment.apiEndpoint + 'pages/')
+  }
 }

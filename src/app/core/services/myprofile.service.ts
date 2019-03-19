@@ -27,7 +27,7 @@ export class MyprofileService {
         formData.append('profile_image', profileImage, profileImage.name);
       }
       
-      console.log(formData);
+      //console.log(formData);
     }
     return this.http.post(environment.apiEndpoint + 'userprofileupdate/'+id, formData)
   }

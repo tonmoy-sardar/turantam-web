@@ -13,6 +13,7 @@ const routes: Routes = [
       { path: '/', redirectTo: 'home', pathMatch: "full" },
       { path: 'home', loadChildren: './home/home.module#HomeModule' },
       { path: 'home/:name', loadChildren: './home/home.module#HomeModule' },
+      { path: 'cms/:slug', loadChildren: './cms/cms.module#CmsModule' },
       { path: 'subcategory/:id', loadChildren: './subcategory/subcategory.module#SubcategoryModule' },
       { path: 'package', loadChildren: './package/package.module#PackageModule' },
       { path: 'package/:serviceid/:subcatid', loadChildren: './package/package.module#PackageModule' },

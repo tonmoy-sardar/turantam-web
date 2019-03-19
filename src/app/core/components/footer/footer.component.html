@@ -23,9 +23,13 @@
             <ul class="menu">
               <li><a href="#">- Home</a></li>
               <li><a [routerLink]="['/allcategory']">- Category</a></li>
-              <li><a [routerLink]="['/privacy']">- Privacy Policy</a></li>
-              <li><a [routerLink]="['/terms-condition']">- Terms & Condition</a></li>
-              <li><a href="#">- Contact us</a></li>
+              
+              <li *ngFor="let page of cmsPageList let i = index">
+                <a (click)="gotoPage(page.page_url)">- {{page.page_name}}</a>
+              </li>
+              <!-- <li><a [routerLink]="['/privacy']">- Privacy Policy</a></li>
+              <li><a [routerLink]="['/terms-condition']">- Terms & Condition</a></li> -->
+              <li><a [routerLink]="['/contactus']">- Contact us</a></li>
             </ul>
           </div>
         </div>

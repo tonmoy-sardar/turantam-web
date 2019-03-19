@@ -1,158 +1,165 @@
 <div id="hero-area">
-    <div class="overlay"></div>
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-12 col-lg-9 col-xs-12 text-center">
-                <div class="contents">
-                    <h1 class="head-title">Welcome to The Largest <span class="year">Marketplace</span></h1>
-                    <p>Buy and sell everything from used cars to mobile phones and computers, or search for property, jobs and more</p>
-                    <div class="search-bar">
-                        <div class="search-inner">
-                            <form class="search-form">
-                                <div class="form-group inputwithicon">
-                                    <div class="select">
+  <div class="overlay"></div>
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-12 col-lg-9 col-xs-12 text-center">
+        <div class="contents">
+          <h1 class="head-title">Welcome to The Largest <span class="year">Marketplace</span></h1>
+          <p>Buy and sell everything from used cars to mobile phones and computers, or search for property,
+            jobs and more</p>
+          <div class="search-bar">
+            <div class="search-inner">
+              <form class="search-form">
+                <div class="form-group inputwithicon">
+                  <div class="select">
 
-                                        <select class="form-control" (change)="gotoLocation($event.target.value)" name="location">
-                                                <option value="">Location</option>
-                                                <option [selected]="locationId == locationlist.id" value="{{locationlist.id}}"  *ngFor="let locationlist of locationList">{{locationlist.name}}</option>
-                                              </select>
-                                    </div>
-                                    <i class="fa fa-map-marker"></i>
-                                </div>
-
-                                <div class="form-group">
-                                    <input type="hidden" [(ngModel)]="catname" name="customword" class="form-control" placeholder="What are you looking for?">
-                                    <!-- <input type="text" [(ngModel)]="catname" name="customword" class="form-control" placeholder="What are you looking for?"> -->
-                                    <input type="text" matInput (input)="onCategoryChanged($event.target.value)" [matAutocomplete]="auto" class="form-control" placeholder="What are you looking for?">
-                                    <mat-autocomplete #auto="matAutocomplete">
-                                        <mat-option *ngFor="let catlist of catList" [value]="catlist.name" (click)="selectCategoty(catlist)">{{ catlist.name }}</mat-option>
-                                    </mat-autocomplete>
-                                </div>
-
-                                <button class="btn btn-common" (click)="gotoSearch(locationId,catname)" type="button"><i class="fa fa-search"></i> Search Now</button>
-                            </form>
-                        </div>
-                    </div>
+                    <select class="form-control" (change)="gotoLocation($event.target.value)" name="location">
+                      <option value="">Location</option>
+                      <option [selected]="locationId == locationlist.id" value="{{locationlist.id}}" *ngFor="let locationlist of locationList">
+                        {{locationlist.name}}</option>
+                    </select>
+                  </div>
+                  <i class="fa fa-map-marker"></i>
                 </div>
+
+                <div class="form-group">
+                  <input type="hidden" [(ngModel)]="catname" name="customword" class="form-control" placeholder="What are you looking for?">
+                  <!-- <input type="text" [(ngModel)]="catname" name="customword" class="form-control" placeholder="What are you looking for?"> -->
+                  <input type="text" matInput (input)="onCategoryChanged($event.target.value)" [matAutocomplete]="auto"
+                    class="form-control" placeholder="What are you looking for?">
+                  <mat-autocomplete #auto="matAutocomplete">
+                    <mat-option *ngFor="let catlist of catList" [value]="catlist.name" (click)="selectCategoty(catlist)">{{
+                      catlist.name }}</mat-option>
+                  </mat-autocomplete>
+                </div>
+
+                <button class="btn btn-common" (click)="gotoSearch(locationId,catname)" type="button"><i class="fa fa-search"></i>
+                  Search Now</button>
+              </form>
             </div>
+          </div>
         </div>
+      </div>
     </div>
+  </div>
 </div>
 
 <!-- </header> -->
 <section id="categories">
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-lg-10 col-md-12 col-xs-12">
-
-
-
-                <owl-carousel #owlElement [options]="{ dots: false, nav: true, loop:true,responsive: {'0': {  items: 1, margin: 5 },
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-10 col-md-12 col-xs-12">
+        <owl-carousel #owlElement [options]="{ dots: false, nav: true, loop:true,responsive: {'0': {  items: 1, margin: 5 },
                 '480': { items: 1,  margin: 5 },
     '640': { items: 4, margin: 5 }
-           }  }" [items]="categoryList" [carouselClasses]="['owl-theme', 'row', 'sliding', 'categories-wrapper', 'owl-carousel','owl-prev','owl-next','banner-categories']">
+           }  }"
+          [items]="categoryList" [carouselClasses]="['owl-theme', 'row', 'sliding', 'categories-wrapper', 'owl-carousel','owl-prev','owl-next','banner-categories']">
 
-                    <div class="item" *ngFor="let category of categoryList ; let i = index">
-                        <a href="JavaScript:Void(0);" [routerLink]="['/category', category.slug]">
-                            <div class="category-icon-item">
-                                <div class="icon-box">
-                                    <div class="icon">
-                                        <img [src]="category.image_small != '' && imageBaseUrl+ category.image_small || 'assets/img/no-image.png'" alt="">
+          <div class="item" *ngFor="let category of categoryList ; let i = index">
+            <a href="JavaScript:Void(0);" [routerLink]="['/category', category.slug]">
+              <div class="category-icon-item">
+                <div class="icon-box">
+                  <div class="icon">
+                    <img [src]="category.image_small != '' && imageBaseUrl+ category.image_small || 'assets/img/no-image.png'"
+                      alt="">
 
-                                    </div>
-                                    <h4>{{category.name}}</h4>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                </owl-carousel>
+                  </div>
+                  <h4>{{category.name}}</h4>
+                </div>
+              </div>
+            </a>
+          </div>
+        </owl-carousel>
 
-            </div>
-        </div>
+      </div>
     </div>
+  </div>
 </section>
 
 
 <section class="featured section-padding">
-    <div class="container">
-        <h1 class="section-title">Latest Services</h1>
+  <div class="container">
+    <h1 class="section-title">Latest Services</h1>
 
-        <div class="row">
-            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-4" *ngFor="let services of recentServices ; let i = index">
-                <div class="featured-box latest-services">
-                    <figure>
-                        <a href="javaScript:Void(0)" (click)="gotoPackageListing(services.slug,services.category_slug)"><img class="img-fluid w-100" [src]="services.image != null && imageBaseUrl+ services.image || 'assets/img/no-img.png'" alt=""></a>
-                    </figure>
-                    <div class="feature-content d-flex align-items-center w-100 justify-content-center">
+    <div class="row">
+      <div class="col-xs-6 col-sm-6 col-md-6 col-lg-4" *ngFor="let services of recentServices ; let i = index">
+        <div class="featured-box latest-services">
+          <figure>
+            <a href="javaScript:Void(0)" (click)="gotoPackageListing(services.slug,services.category_slug)"><img class="img-fluid w-100"
+                [src]="services.image_large != '' && imageBaseUrl+ services.image_large || 'assets/img/no-img.png'" alt=""></a>
+          </figure>
+          <div class="feature-content d-flex align-items-center w-100 justify-content-center">
 
-                        <h4><a href="javaScript:Void(0)">{{services.name}}</a></h4>
+            <h4><a href="javaScript:Void(0)">{{services.name}}</a></h4>
 
-                        <p class="dsc">{{services.description}}</p>
+            <!-- <p class="dsc">{{services.description}}</p> -->
 
-                    </div>
-                </div>
-            </div>
-
+          </div>
         </div>
+      </div>
+
     </div>
+  </div>
 </section>
 
 <section class="works section-padding">
-    <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <h3 class="section-title">How It Works?</h3>
-            </div>
-            <div class="col-lg-4 col-md-4 col-xs-12">
-                <div class="works-item">
-                    <div class="icon-box">
-                        <i class="fa fa-pencil-square-o"></i>
-                    </div>
-                    <p>Create an Account</p>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-4 col-xs-12">
-                <div class="works-item">
-                    <div class="icon-box">
-                        <i class="fa fa-bullhorn"></i>
-                    </div>
-                    <p>Post Free Ad</p>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-4 col-xs-12">
-                <div class="works-item">
-                    <div class="icon-box">
-                        <i class="fa fa-thumbs-up"></i>
-                    </div>
-                    <p>Deal Done</p>
-                </div>
-            </div>
-            <hr class="works-line">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <h3 class="section-title">How It Works?</h3>
+      </div>
+      <div class="col-lg-4 col-md-4 col-xs-12">
+        <div class="works-item">
+          <div class="icon-box">
+            <i class="fa fa-pencil-square-o"></i>
+          </div>
+          <p>Create an Account</p>
         </div>
+      </div>
+      <div class="col-lg-4 col-md-4 col-xs-12">
+        <div class="works-item">
+          <div class="icon-box">
+            <i class="fa fa-bullhorn"></i>
+          </div>
+          <p>Post Free Ad</p>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-4 col-xs-12">
+        <div class="works-item">
+          <div class="icon-box">
+            <i class="fa fa-thumbs-up"></i>
+          </div>
+          <p>Deal Done</p>
+        </div>
+      </div>
+      <hr class="works-line">
     </div>
+  </div>
 </section>
 
 
 <section class="services bg-light section-padding">
-    <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <h3 class="section-title">Key Features</h3>
-            </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <h3 class="section-title">Key Features</h3>
+      </div>
 
-            <div class="col-md-6 col-lg-4 col-xs-12">
-                <div class="services-item wow fadeInRight" data-wow-delay="0.2s">
-                    <div class="icon">
-                        <i class="fa fa-wrench"></i>
-                    </div>
-                    <div class="services-content">
-                        <h3><a href="#">Appliance Repair</a></h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quo aut magni perferendis.</p>
-                    </div>
-                </div>
-            </div>
+      <div class="col-md-6 col-lg-4 col-xs-12" *ngFor="let category of categoryList  | slice:0:3; let i = index">
+        <div class="services-item wow fadeInRight" data-wow-delay="0.2s">
+          <div class="icon">
+            <!-- <i class="fa fa-wrench"></i> -->
+            <img [src]="category.image_small != '' && imageBaseUrl+ category.image_small || 'assets/img/no-image.png'"
+              alt="">
+          </div>
+          <div class="services-content">
+            <h3><a href="javascript:void(0)">{{category.name}}</a></h3>
+            <p>{{category.description}}</p>
+          </div>
+        </div>
+      </div>
 
-            <div class="col-md-6 col-lg-4 col-xs-12">
+      <!-- <div class="col-md-6 col-lg-4 col-xs-12">
                 <div class="services-item wow fadeInRight" data-wow-delay="0.4s">
                     <div class="icon">
                         <i class="fa fa-envira"></i>
@@ -174,107 +181,52 @@
                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quo aut magni perferendis.</p>
                     </div>
                 </div>
-            </div>
+            </div> -->
 
-        </div>
     </div>
+  </div>
 </section>
 
 
 
 <section class="testimonial section-padding">
-    <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <h3 class="section-title">Our Client Say</h3>
-            </div>
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <h3 class="section-title">Our Client Say</h3>
+      </div>
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 
-                <owl-carousel [options]="{items: 2, dots: false, navigation: false,responsive: {'0': {  items: 1, margin: 5 },
+        <!-- <owl-carousel [options]="{items: 2, dots: false, navigation: false,responsive: {'0': {  items: 1, margin: 5 },
                 '480': { items: 1,  margin: 5 },
     '640': { items: 2, margin: 5 }
-           } }" [items]="" [carouselClasses]="['owl-theme', 'row', 'sliding','owl-carousel']">
-                    <div class="item">
-                        <div class="img-thumb">
-                            <img src="assets/img/img1.png" alt="">
-                        </div>
-                        <div class="testimonial-item">
-                            <div class="content">
-                                <p class="description">Eiusmod tempor incidiunt labore velit dolore magna aliqu sed eniminim veniam quis nostrud exercition eullamco laborisaa, Eiusmod tempor incidiunt labore velit dolore magna.</p>
-                                <div class="info-text">
-                                    <h2><a href="#">Josh Rossi</a></h2>
-                                    <h4><a href="#">CEO of Fiverr</a></h4>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="item">
-                            <div class="img-thumb">
-                                <img src="assets/img/img2.png" alt="">
-                            </div>
-                            <div class="testimonial-item">
-                                <div class="content">
-                                    <p class="description">Eiusmod tempor incidiunt labore velit dolore magna aliqu sed eniminim veniam quis nostrud exercition eullamco laborisaa, Eiusmod tempor incidiunt labore velit dolore magna.</p>
-                                    <div class="info-text">
-                                        <h2><a href="#">Jessica</a></h2>
-                                        <h4><a href="#">CEO of Dropbox</a></h4>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="item">
-                            <div class="img-thumb">
-                                <img src="assets/img/img3.png" alt="">
-                            </div>
-                            <div class="testimonial-item">
-                                <div class="content">
-                                    <p class="description">Eiusmod tempor incidiunt labore velit dolore magna aliqu sed eniminim veniam quis nostrud exercition eullamco laborisaa, Eiusmod tempor incidiunt labore velit dolore magna.</p>
-                                    <div class="info-text">
-                                        <h2><a href="#">Johnny Zeigler</a></h2>
-                                        <h4><a href="#">CEO of Fiverr</a></h4>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="item">
-                            <div class="img-thumb">
-                                <img src="assets/img/img4.png" alt="">
-                            </div>
-                            <div class="testimonial-item">
-                                <div class="content">
-                                    <p class="description">Eiusmod tempor incidiunt labore velit dolore magna aliqu sed eniminim veniam quis nostrud exercition eullamco laborisaa, Eiusmod tempor incidiunt labore velit dolore magna.</p>
-                                    <div class="info-text">
-                                        <h2><a href="#">Josh Rossi</a></h2>
-                                        <h4><a href="#">CEO of Fiverr</a></h4>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="item">
-                            <div class="img-thumb">
-                                <img src="assets/img/img5.png" alt="">
-                            </div>
-                            <div class="testimonial-item">
-                                <div class="content">
-                                    <p class="description">Eiusmod tempor incidiunt labore velit dolore magna aliqu sed eniminim veniam quis nostrud exercition eullamco laborisaa, Eiusmod tempor incidiunt labore velit dolore magna.</p>
-                                    <div class="info-text">
-                                        <h2><a href="#">Priyanka</a></h2>
-                                        <h4><a href="#">CEO of Dropbox</a></h4>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </owl-carousel>
+           } }" [items]="" [carouselClasses]="['owl-theme', 'row', 'sliding','owl-carousel']"> -->
+           <owl-carousel #owlElement [options]="{ dots: false, nav: true, loop:true,responsive: {'0': {  items: 1, margin: 5 },
+           '480': { items: 1,  margin: 5 },
+'640': { items: 2, margin: 5 }
+      }  }"
+          [items]="categoryList" [carouselClasses]="['owl-theme', 'row', 'sliding', 'categories-wrapper', 'owl-carousel','owl-prev','owl-next','banner-categories']">
 
+          <div class="item" *ngFor="let testimonial of testimonialList ; let i = index">
+            <div class="img-thumb">
+
+              <img [src]="testimonial.image_small != '' && imageBaseUrl+ testimonial.image_small || 'assets/img/no-image.png'"
+                alt="">
             </div>
-        </div>
+            <div class="testimonial-item">
+              <div class="content">
+                <p class="description">{{testimonial.description}}</p>
+                <div class="info-text">
+                  <h2><a href="javascript:void(0)">{{testimonial.name}}</a></h2>
+
+                </div>
+              </div>
+            </div>
+          </div>
+          
+        </owl-carousel>
+
+      </div>
     </div>
+  </div>
 </section>

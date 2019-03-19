@@ -64,11 +64,11 @@ export class MyordersComponent implements OnInit {
     order_id : orderid,
     user_id : user_id
     }
-   console.log(this.order);
+   //console.log(this.order);
     this.myordersService.addRating(this.order).subscribe(
       res => {
      //  this.myOrderList = res.result;
-       console.log(res);
+      // console.log(res);
        this.toastr.success('Your Rating succesfully Submitted', '', {
         timeOut: 6000,
       });

@@ -68,8 +68,8 @@ export class PackagedetailsComponent implements OnInit {
     this.packageService.getpackageDetails(id).subscribe(
       res => {
         this.packagedetails = res.result;
-        console.log(this.packagedetails);
-        console.log(this.packagedetails.iscart);
+        //console.log(this.packagedetails);
+        //console.log(this.packagedetails.iscart);
         this.packageEntity = res['result'].package_entity;
         var index = this.customer_cart_data.findIndex(y => y.package_id == this.packagedetails.id && y.customer_id == this.user_id);
 
@@ -90,7 +90,7 @@ export class PackagedetailsComponent implements OnInit {
 
   
   addtoCart(item) {
-    console.log(item);
+   // console.log(item);
   //  if (localStorage.getItem('isLoggedin')) {
     var data = {
       customer_id: this.user_id,
@@ -181,7 +181,7 @@ export class PackagedetailsComponent implements OnInit {
   recentServices() {
     this.packageService.recentservice().subscribe(
       res => {
-       console.log(res);
+       //console.log(res);
        this.recentserviceList = res.result;
       },
       error => {

@@ -17,7 +17,7 @@ export class CheckoutService {
 
 
   addOrder(data): Observable<any> {
-    console.log(data);
+    //console.log(data);
     return this.http.post(environment.apiEndpoint + 'addorder/', data)
   }
 
