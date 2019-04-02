@@ -12,6 +12,7 @@ export class OrderSuccessComponent implements OnInit {
   orderDetails:any;
   user_id:string;
   user_email:string;
+  visible_key:boolean;
   constructor(
     private router: Router,
     private route: ActivatedRoute,
@@ -19,9 +20,11 @@ export class OrderSuccessComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.visible_key=false;
     if (localStorage.getItem('isLoggedin')) {
       this.user_id = localStorage.getItem('userId');
       this.user_email = localStorage.getItem('userEmail');
+
 
     }
 
@@ -31,13 +34,18 @@ export class OrderSuccessComponent implements OnInit {
   getOrderDetails(id) {
     this.orderSuccessService.getorderDetails(id).subscribe(
       res => {
+        this.visible_key=true;
         this.orderDetails = res.result;
     
       },
       error => {
+        this.visible_key=true;
         console.log(error);
       }
     );
+  }
+  goToHome() {
+    this.router.navigateByUrl('/home');
   }
 
 }

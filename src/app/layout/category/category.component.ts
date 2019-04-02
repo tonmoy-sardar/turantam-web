@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CategoryService } from '../../core/services/category.service';
+import { environment } from '../../../environments/environment';
 @Component({
   selector: 'app-category',
   templateUrl: './category.component.html',
@@ -12,12 +13,15 @@ export class categoryComponent implements OnInit {
   catid: any;
   cityid: any;
   categoryName:any;
+  imageBaseUrl:string;
   constructor(
     private http: HttpClient,
     private router: Router,
     private route: ActivatedRoute,
     private categoryService: CategoryService,
-  ) { }
+  ) { 
+    this.imageBaseUrl = environment.imageBaseUrl;
+  }
 
   ngOnInit() {
 
@@ -45,7 +49,7 @@ export class categoryComponent implements OnInit {
     this.categoryService.getsubCat(id).subscribe(
       res => {
         this.subcatList = res.result;
-        console.log(this.subcatList);
+        //console.log(this.subcatList);
       },
       error => {
         console.log(error);
@@ -59,6 +63,7 @@ export class categoryComponent implements OnInit {
       res => {
         this.categoryName = res.category_name;
         this.subcatList = res.result;
+        console.log("Sub Cat List==>",this.subcatList);
       },
       error => {
         console.log(error);

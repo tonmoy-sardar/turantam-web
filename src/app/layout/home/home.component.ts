@@ -31,6 +31,7 @@ export class HomeComponent implements OnInit {
   catname: string;
   defaultLocation: any;
   defaultLocationId: any;
+  testimonialList:any =[];
 
   catList = [];
   constructor(
@@ -58,6 +59,7 @@ export class HomeComponent implements OnInit {
     this.getCategoryList();
     this.getLocationApi();
     this.recentService();
+    this.recentTestimonial();
    // this.getLocation();
     //this.locationId = 2;
    // alert(this.defaultLocationId);
@@ -102,7 +104,7 @@ export class HomeComponent implements OnInit {
     this.homeService.getcategoryList().subscribe(
       res => {
         this.categoryList = res.result;
-        console.log(this.categoryList);
+        //console.log(this.categoryList);
       },
       error => {
         console.log(error);
@@ -198,8 +200,20 @@ export class HomeComponent implements OnInit {
   recentService() {
     this.homeService.recentService().subscribe(
       res => {
-        console.log("Home Page Services==>", res);
+       // console.log("Home Page Services==>", res);
         this.recentServices = res['result'];
+      },
+      error => {
+        console.log(error);
+      }
+    );
+  }
+
+  recentTestimonial() {
+    this.homeService.testimonialService().subscribe(
+      res => {
+       // console.log("Testimonial==>", res);
+        this.testimonialList = res['result'];
       },
       error => {
         console.log(error);
@@ -216,7 +230,7 @@ export class HomeComponent implements OnInit {
     this.homeService.getCatList(searchStr).subscribe(
       res => {
 
-        console.log("Cat List==>", res);
+        //console.log("Cat List==>", res);
         this.catList = res['result'];
       },
       error => {
@@ -226,7 +240,7 @@ export class HomeComponent implements OnInit {
   }
 
   selectCategoty(catlist) {
-    console.log(catlist);
+    //console.log(catlist);
     this.catname = catlist.slug;
   }
 

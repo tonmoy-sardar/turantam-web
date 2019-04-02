@@ -23,7 +23,7 @@
         <div class="page-content">
           <div class="inner-box  bg-light">
 
-            <div class="dashboard-wrapper">
+            <div class="dashboard-wrapper" *ngIf="visible_key">
               <div *ngIf="orderDetails !=null" class="order-success text-center">
                 <div class="row">
                   <div class="col-md-12">
@@ -50,7 +50,7 @@
 
                     <div class="d-flex justify-content-center order-button">
 
-                      <button type="button" class="btn btn-default">Home</button>
+                      <button type="button" class="btn btn-default" (click)="goToHome('HomePage')">Home</button>
 
                       <!-- <button type="button" class="btn btn-success">Continue</button> -->
 

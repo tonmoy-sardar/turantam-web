@@ -203,7 +203,7 @@ ol li {
 }
 
 .btn-common {
-    width: 100%;
+    //width: 100%;
     background-color: #e40046;
     position: relative;
     color: #fff;
@@ -4018,11 +4018,12 @@ label {
     padding: 15px;
     background: #f8f8f8;
     border-radius: 0;
-    border: 1px solid #e6e6e6
+    border: 1px solid #e6e6e6;
+    min-height: 200px;
 }
 
 .testimonial-item .content {
-    padding: 50px 20px 15px
+    padding: 30px 20px 15px
 }
 
 .testimonial-item .content .description {
@@ -4034,10 +4035,13 @@ label {
 }
 
 .testimonial-item .content .info-text h2 {
-    font-size: 18px;
+    font-size: 14px;
     font-weight: 500;
     line-height: 25px;
-    margin-bottom: 0
+    margin-bottom: 0;
+    text-align: right;
+    text-decoration: underline;
+    color: #c70000;
 }
 
 .testimonial-item .content .info-text h2 a {

@@ -18,7 +18,7 @@ import { CartService } from '../../core/services/cart.service';
 })
 export class PackageComponent implements OnInit {
   qty: any;
-  packageList: any;
+  packageList: any=[];
   serviceList:any;
   subCatName:any;
   user_id: any;
@@ -69,10 +69,10 @@ export class PackageComponent implements OnInit {
   getAllServiceList(subcatId) {
     this.packageService.getServiceList(subcatId).subscribe(
       res => {
-        console.log("Service List ==>",res);
+       // console.log("Service List ==>",res);
         this.subCatName = res.subcategory_name;
         this.serviceList = res.result;
-        console.log(this.serviceList);
+       // console.log(this.serviceList);
 
       },
       error => {
@@ -86,7 +86,7 @@ export class PackageComponent implements OnInit {
   getpackageList(id) {
     this.packageService.getpackageList(id).subscribe(
       res => {
-        console.log("Package List ==>",res);
+        //console.log("Package List ==>",res);
         this.packageList = res.result;
        
         for (let i = 0; i < this.packageList.length; i++) {

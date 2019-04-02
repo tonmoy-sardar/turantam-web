@@ -67,6 +67,7 @@ export class MyprofileComponent implements OnInit {
 
   onFileChange(event) {
     this.profileImage = event.target.files[0];
+    //console.log(this.profileImage);
   }
 
   updateProfile() {

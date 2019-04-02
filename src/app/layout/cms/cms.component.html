@@ -1,0 +1,26 @@
+<div class="page-header" style="background: url(assets/img/hero-area.jpg); background:cover ">
+  <div class="container">
+      <div class="row">
+          <div class="col-md-12">
+              <div class="breadcrumb-wrapper">
+                  <h2 class="product-title">{{cmsDetails.page_name}}</h2>
+                  <ol class="breadcrumb">
+                      <li><a href="#">Home /</a></li>
+
+                      <li class="current">{{cmsDetails.page_name}}</li>
+                  </ol>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+<section id="content" class="section-padding">
+  <div class="container">
+      <div class="row mb-30">
+          <div class="col-lg-12 col-md-12 col-xs-12">
+               <!-- <P></P> -->
+               <div [innerHTML]="cmsDetails.content"></div>
+          </div>
+      </div>
+  </div>
+</section>

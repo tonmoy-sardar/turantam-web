@@ -44,7 +44,7 @@ export class CartComponent implements OnInit {
   populateData() {
     if (sessionStorage.getItem("cart")) {
       this.all_cart_data = JSON.parse(sessionStorage.getItem("cart"));
-      console.log(this.all_cart_data);
+     // console.log(this.all_cart_data);
      // var filteredData = this.all_cart_data.filter(x => x.customer_id == this.user_id)
      // this.customer_cart_data = filteredData;
 
@@ -91,7 +91,7 @@ export class CartComponent implements OnInit {
 
 
   setCartData() {
-    console.log(this.all_cart_data);
+    //console.log(this.all_cart_data);
     sessionStorage.setItem("cart", JSON.stringify(this.all_cart_data));
     this.getTotalItemPrice();
     this.getTotalPackingPrice();
@@ -114,11 +114,11 @@ export class CartComponent implements OnInit {
     this.customer_cart_data.forEach(x => {
       if (x.discounted_price > 0) {
         this.total_item_price += (x.discounted_price * x.quantity);
-        console.log(this.total_item_price);
+        //console.log(this.total_item_price);
       }
       else {
         this.total_item_price += (x.price * x.quantity);
-        console.log(this.total_item_price);
+       // console.log(this.total_item_price);
       }
     })
   }
@@ -141,7 +141,7 @@ export class CartComponent implements OnInit {
         data: { type: 1 }
       });
       dialogRef.afterClosed().subscribe(result => {
-        console.log(result);
+        //console.log(result);
         this.user_id = localStorage.getItem('userId')
         
         if (this.customer_cart_data.length > 0) {
